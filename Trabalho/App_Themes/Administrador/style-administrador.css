@@ -1,0 +1,95 @@
+﻿body {
+    background-color:rgba(242,242,242,0.5);
+}
+
+@media (min-width: 768px) {
+  .navbar-collapse {
+    height: auto;
+    border-top: 0;
+    box-shadow: none;
+    max-height: none;
+    padding-left:0;
+    padding-right:0;
+  }
+  .navbar-collapse.collapse {
+    display: block !important;
+    width: auto !important;
+    padding-bottom: 0;
+    overflow: visible !important;
+  }
+  .navbar-collapse.in {
+    overflow-x: visible;
+  }
+
+.navbar
+{
+	max-width:300px;
+	margin-right: 0;
+	margin-left: 0;
+}	
+
+.navbar-nav,
+.navbar-nav > li,
+.navbar-left,
+.navbar-right,
+.navbar-header
+{float:none !important;}
+
+.navbar-right .dropdown-menu {left:0;right:auto;}
+.navbar-collapse .navbar-nav.navbar-right:last-child {
+    margin-right: 0;
+}
+}
+
+
+/*Administator page custom style*/
+#mainAdminPanelContent{
+    margin-top:30px;
+    
+}
+
+/*Override navbar-default*/
+/*.navbar-default{
+    background-color:rgba(242,242,242,0.5);
+    border:none;
+}
+
+
+*/
+.navbar-default .navbar-brand{
+    color:#ffffff;
+    cursor:text;
+}
+
+.navbar-default .navbar-brand:hover{
+    color:#ffffff;
+}
+/*
+.navbar-default .navbar-nav>li>a{
+    color:#000000;
+}
+
+.navbar-default .navbar-nav>li>a:hover{
+    background-color:rgba(242,242,242,1);
+    color:rgba(51,51,51,1);
+}*/
+
+
+
+
+/*Left side menu*/
+.list-group-submenu {
+  margin-left:20px;
+}
+
+.list-group-submenu>a {
+  background-color:#DD4814;
+  color:#ffffff;
+  border:none;
+}
+
+.list-group-submenu>a:hover {
+  background-color:#97310E;
+  color:#ffffff;
+}
+

@@ -1,0 +1,71 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" EnableTheming="true"  CodeFile="Administrator.master.cs" Inherits="Administrator_Administrator" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link rel="shortcut icon" href="../Images/favicon.ico" />
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <!--Main content -->
+        <div id="mainAdminPanelContent">
+            <div class="row">
+                <div class="col-md-2">
+
+                    <!-- Navigation bar -->
+                    <nav class="navbar navbar-default" role="navigation">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand " href="#">Administrador</a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse navbar-ex1-collapse">
+
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <a href="../">Home page</a>
+                                </li>
+                                <li id="ToogleMenu">
+                                    <a href="#SubMenu" data-toggle="collapse" data-parent="#ToogleMenu">Admin<i class="caret"></i></a>
+                                    <div class="collapse list-group-submenu" id="SubMenu">
+                                        <a href="Admin" class="list-group-item" data-parent="#SubMenu">Home</a>
+                                        <a href="AdminUsers" class="list-group-item" data-parent="#SubMenu">Utilizador</a>
+                                        <a href="AdminAutor" class="list-group-item" data-parent="#SubMenu">Autor</a>
+                                    </div>
+                                </li>                                
+                                <li>
+                                    <asp:LoginStatus ID="LoginStatus1" runat="server" />
+                                </li>
+                        
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </nav>
+                    </div>
+                
+                <div class="col-md-10">
+                    <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+
+            </div>
+        </div>
+       
+
+        <script src="../Scripts/jquery-2.1.1.js"></script>
+        <script src="../Scripts/bootstrap.min.js"></script>
+    </form>
+</body>
+</html>

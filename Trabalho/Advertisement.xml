@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Advertisements>
+  <Ad>
+    <ImageUrl>/Images/01.jpg</ImageUrl>
+    <NavigateUrl>http://heldermenezes.org/</NavigateUrl>
+    <AlternateText>Chelsea FC</AlternateText>
+    
+  </Ad>
+
+  <Ad>
+    <ImageUrl>/Images/02.jpg</ImageUrl>
+    <NavigateUrl>http://heldermenezes.org/</NavigateUrl>
+    <AlternateText>Chelsea FC</AlternateText>
+    
+  </Ad>
+
+  <Ad>
+    <ImageUrl>/Images/03.jpg</ImageUrl>
+    <NavigateUrl>http://heldermenezes.org/</NavigateUrl>
+    <AlternateText>Chelsea FC</AlternateText>
+   
+  </Ad>
+  <Ad>
+    <ImageUrl>/Images/04.png</ImageUrl>
+    <NavigateUrl>http://heldermenezes.org/ </NavigateUrl>
+    <AlternateText>Chelsea FC</AlternateText>
+    
+  </Ad>
+  <Ad>
+    <ImageUrl>/Images/chelsea.jpg</ImageUrl>
+    <NavigateUrl>http://heldermenezes.org/ </NavigateUrl>
+    <AlternateText>Chelsea FC</AlternateText>
+
+  </Ad>
+  <Ad>
+    <ImageUrl>/Images/logo_reduzido.jpg</ImageUrl>
+    <NavigateUrl> http://www.esgs.pt/ </NavigateUrl>
+    <AlternateText>Escola Superior de Gestão de Santarém</AlternateText>
+
+  </Ad>
+
+  <Ad>
+    <ImageUrl>/Images/05.jpeg</ImageUrl>
+    <NavigateUrl> http://www.esgs.pt/ </NavigateUrl>
+    <AlternateText>Escola Superior de Gestão de Santarém</AlternateText>
+
+  </Ad>
+  <Ad>
+    <ImageUrl>/Images/06.jpg</ImageUrl>
+    <NavigateUrl> http://www.ipsantarem.pt/ </NavigateUrl>
+    <AlternateText>Intituto Politécnico de Santarém</AlternateText>
+
+  </Ad>
+</Advertisements>

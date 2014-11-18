@@ -1,0 +1,109 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPages_Publico" %>
+
+<%@ Register Src="~/Control/WebUserControl.ascx" TagPrefix="Adds" TagName="WebUserControl" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Primeiro trabalho realizado para disciplina Integração de sistemas 2 usando Asp.Net WebForms"/>
+    <meta name="author" content="Hélder Menezes"/>
+
+    <title></title>  
+    <link rel="shortcut icon" href="Images/favicon.ico" />
+</head>
+<body>
+    <form id="form1" runat="server">
+            <nav id="myNavbar" runat="server" class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="./">Trabalho I - IS2</a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="./">Home</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Biblioteca <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="PesquisaLivros.aspx">Pesquisar livros</a></li>
+                                    <li><a href="RequisitarLivros.aspx">Requisitar livros</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="Contato.aspx">Contato</a></li>
+                            <li>
+                                <div id="LoginStatus-name">
+                                     <asp:LoginStatus ID="LoginStatus2" runat="server" /> &nbsp;
+                                    <asp:LoginName ID="LoginName1" runat="server" />
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        
+            <div class="container container-full" id="BodyContentContainer" runat="server">
+
+                <div class="col-md-2" id="divTreeViewMenu">
+                    <asp:TreeView ID="TreeView1" runat="server" DataSourceID="SiteMapDataSource1" ImageSet="Arrows">
+                        <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD"></HoverNodeStyle>
+                        <NodeStyle HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px" Font-Names="Tahoma" Font-Size="10pt" ForeColor="Black"></NodeStyle>
+
+                        <ParentNodeStyle Font-Bold="False"></ParentNodeStyle>
+
+                        <SelectedNodeStyle HorizontalPadding="0px" VerticalPadding="0px" Font-Underline="True" ForeColor="#5555DD"></SelectedNodeStyle>
+                    </asp:TreeView>
+                    <asp:SiteMapDataSource runat="server" ID="SiteMapDataSource1"></asp:SiteMapDataSource>
+                </div>
+                <div class="col-md-7" id="divMainContent">
+                    <asp:SiteMapPath ID="SiteMapPath1" runat="server"></asp:SiteMapPath>
+                    <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
+                        
+                    </asp:ContentPlaceHolder>
+                </div>
+                <div class="col-md-2" id="divAddsAndThemeSelector">
+                    <div>
+                        <label class="control-label">Mudar o tema</label><br />
+                        <asp:DropDownList ID="ThemeList" CssClass="form-control" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ThemeList_SelectedIndexChanged">
+                            <asp:ListItem>MyBootstrapTheme</asp:ListItem>
+                            <asp:ListItem>Normal</asp:ListItem>
+                        </asp:DropDownList>
+                        <br />
+                        <br />
+
+                        <br />
+                        <br />
+                        <Adds:WebUserControl runat="server" ID="WebUserControl" />
+                        <%--<asp:ContentPlaceHolder ID="AddsPlaceHolder" runat="server"></asp:ContentPlaceHolder>--%>
+                    </div>
+                    <br />
+                    <div>
+                        
+                    </div>
+                </div>
+
+                <hr />
+                <div class="row" id="footer">
+                    <div class="col-sm-12 col-lg-12 col-xs-12 col-md-12">
+                        <footer>
+                            <p class="text-center">© Copyright 2014 Integração de sistemas II</p>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+
+            <script src="Scripts/jquery-2.1.1.min.js"></script>
+            <script src="../Scripts/bootstrap.min.js"></script>
+    </form>
+</body>
+</html>

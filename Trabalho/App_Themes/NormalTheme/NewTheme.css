@@ -1,0 +1,146 @@
+﻿#BodyContentContainer{
+    width:100%;
+    margin:0px;
+}
+
+#myNavbar{
+    background-color:azure;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+.navbar-header{
+    display:none;
+}
+
+ul.navbar-nav ul{
+    display: none;
+}
+
+ul.navbar-nav li:hover>ul{
+    display: block;
+}
+
+ul.navbar-nav:after{
+    content: ""; 
+    clear: both; 
+    display: block;
+}
+
+ul.navbar-nav{
+    background: #efefef; 
+	background: linear-gradient(top, #efefef 0%, #bbbbbb 100%);  
+	background: -moz-linear-gradient(top, #efefef 0%, #bbbbbb 100%); 
+	background: -webkit-linear-gradient(top, #efefef 0%,#bbbbbb 100%); 
+	box-shadow: 0px 0px 9px rgba(0,0,0,0.15);
+	padding: 0 10px;
+	border-radius: 10px;  
+	list-style: none;
+	position: relative;
+	display: inline-table;
+}
+
+
+ul.navbar-nav li{
+    float:left;
+}
+
+ul.navbar-nav li:hover{
+    background: #4b545f;
+	background: linear-gradient(top, #4f5964 0%, #5f6975 40%);
+	background: -moz-linear-gradient(top, #4f5964 0%, #5f6975 40%);
+	background: -webkit-linear-gradient(top, #4f5964 0%,#5f6975 40%);
+    border-radius: 10px;  
+}
+
+ul.navbar-nav li:hover a{
+    color: #fff;
+}
+
+ul.navbar-nav li a{
+    display: block; padding: 10px 40px;
+	color: #757575; text-decoration: none;
+}
+
+ul.navbar-nav ul.dropdown-menu{
+    /*background: #efefef;*/ border-radius: 0px; padding: 0px;
+	position: absolute; top: 68%;
+    list-style-type:none;
+    border-radius:10px;
+    background-color:transparent;
+}
+
+ul.navbar-nav ul.dropdown-menu li{
+    float: none; 
+    border-top: 1px solid #6b727c;
+    border-bottom: 1px solid #575f6a;
+    position: relative;
+    border-radius:10px;
+}
+
+ul.navbar-nav ul.dropdown-menu li a{
+    color: #000000;
+    background-color:#efefef;
+}
+
+ul.navbar-nav ul.dropdown-menu li a:hover{
+    background: rgba(95,105,117,0.50);
+    border-radius: 10px;  
+}
+
+ #LoginStatus-name {
+    color:#757575;
+ }
+
+ #LoginStatus-name:hover{
+     color:#fff;
+ }
+
+/*
+    BodyContentContainer
+*/
+
+#BodyContentContainer{
+    /*background-color:silver;*/
+}
+/*Div for displaying TreeView control*/
+#divTreeViewMenu{
+    line-height:30px;
+    /*background-color:#eeeeee;*/
+    /*height:300px;*/
+    width:12%;
+    float:left;
+    padding:5px;
+    
+}
+/*Div for displaying Main content*/
+#divMainContent{
+    width:70%;
+    margin-left:4px;
+    margin-right:4px;
+    float:left;
+    height:auto;
+    padding:10px;
+    overflow:auto;
+    border:1px dashed;
+    border-radius:5px;
+
+}
+/*Div for displaying Theme selection control and Advertisements*/
+#divAddsAndThemeSelector{
+    clear:both;
+    display: inline-block;
+    width: 12%;
+    overflow:auto;
+   
+}
+
+/*Footer*/
+#footer {
+    background-color: azure;
+    color: black;
+    clear: both;
+    text-align: center;
+    padding: 5px;
+}

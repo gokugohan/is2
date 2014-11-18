@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    <siteMapNode url="./" title="Home"  description="Home page">
+      <siteMapNode title="Biblioteca">
+        <siteMapNode url="./PesquisaLivros" title="Pesquisar livros"  description="Pesquisar livros" />
+        <siteMapNode url="./RequisitarLivros" title="Requisitar livros"  description="Requisitar livros" />
+      </siteMapNode>
+      <siteMapNode url="./Contato" title="Contato"  description="Contato" />
+      <siteMapNode url="./Perfil" title="Perfil"  description="O meu perfil" />
+    </siteMapNode>
+</siteMap>

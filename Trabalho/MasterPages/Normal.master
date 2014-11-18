@@ -1,0 +1,94 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Normal.master.cs" Inherits="MasterPages_Normal" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Primeiro trabalho realizado para disciplina Integração de sistemas 2 usando Asp.Net WebForms"/>
+    <meta name="author" content="Hélder Menezes"/>
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="wrapper">
+
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-brand">
+                        <a href="#" id="sidebrandBrand">Trabalho I - IS2
+                    </a>
+                    </li>
+                    <li>
+                        <asp:TreeView ID="TreeView1" runat="server" DataSourceID="SiteMapDataSource1" ImageSet="Arrows">
+                            <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD"></HoverNodeStyle>
+                            <NodeStyle HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px" Font-Names="Tahoma" Font-Size="10pt" ForeColor="Black"></NodeStyle>
+
+                            <ParentNodeStyle Font-Bold="False"></ParentNodeStyle>
+
+                            <SelectedNodeStyle HorizontalPadding="0px" VerticalPadding="0px" Font-Underline="True" ForeColor="#5555DD"></SelectedNodeStyle>
+                        </asp:TreeView>
+                        <asp:SiteMapDataSource runat="server" ID="SiteMapDataSource1"></asp:SiteMapDataSource>
+
+                    </li>
+                    <li>&nbsp;
+                    </li>
+                    <li>&nbsp;
+                    </li>
+                    <li>
+                        <div>
+                            <label class="control-label">Mudar o tema</label><br />
+                            <section class="row">
+                                <section class="col-sm-8">
+                                    <asp:DropDownList ID="ThemeList" CssClass="form-control moveLeft35px" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ThemeList_SelectedIndexChanged">
+                                        <asp:ListItem>MyBootstrapTheme</asp:ListItem>
+                                        <asp:ListItem>Normal</asp:ListItem>
+                                    </asp:DropDownList>
+                                </section>
+                            </section>
+                        </div>
+                    </li>
+                    <li>
+                        <hr />
+                    </li>
+                    <li>
+                        <%--<Adds:WebUserControl runat="server" ID="WebUserControl" />--%>
+
+                        <asp:AdRotator ID="AdRotator1" AdvertisementFile="~/Advertisement.xml" runat="server" CssClass="img-responsive" />
+                    </li>
+                </ul>
+
+            </div>
+
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                            <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <script src="../Scripts/jquery-2.1.1.js"></script>
+
+        <script src="../Scripts/bootstrap.min.js"></script>
+
+        <script>
+            $("#menu-toggle").click(function (e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+            });
+    </script>
+    </form>
+</body>
+</html>
