@@ -1,0 +1,44 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Admin.master.cs" Inherits="MasterPages_Normal" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Primeiro trabalho realizado para disciplina Integração de sistemas 2 usando Asp.Net WebForms"/>
+    <meta name="author" content="Hélder Menezes"/>
+    <title></title>
+    <link rel="shortcut icon" href="../Images/favicon.ico" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <div id="wrapper">
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-brand">
+                        <a href="#" id="sidebrandBrand">Gerir biblioteca
+                    </a>
+                    </li>
+                    <asp:ContentPlaceHolder ID="CustomMenuContentPlaceHolder" runat="server">
+                    </asp:ContentPlaceHolder>
+                </ul>
+
+            </div>
+           
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
+                    </asp:ContentPlaceHolder>
+
+                </div>
+            </div>
+            </div>
+        
+    </form>
+</body>
+</html>

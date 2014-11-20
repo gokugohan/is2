@@ -1,4 +1,9 @@
 ﻿
+body{
+    /*background-color:#405BC7;*/
+    background-color:floralwhite;
+}
+
 #ThemeList{
     margin-left:35px;
 }
@@ -7,7 +12,33 @@
     cursor:text;
 }
 
+#sidebar-brand:hover{
 
-body{
-    background-color:#405BC7;
+}
+
+
+#loginStatusName{
+    /*display:inline-flex;*/
+    display:inline-table;
+}
+
+#LoginName1{
+    color:#999999;
+    padding-left:5px;
+}
+#LoginName1:hover{
+    cursor:pointer;
+}
+
+
+#LoginStatus1:hover{
+    background-color:transparent;
+}
+
+ #animWrapper{
+    display:none;
+}
+
+#jumbotronContent{
+    padding:8px;
 }

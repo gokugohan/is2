@@ -34,15 +34,15 @@
                         <div class="collapse navbar-collapse navbar-ex1-collapse">
 
                             <ul class="nav navbar-nav">
+                                
                                 <li>
-                                    <a href="../">Home page</a>
+                                    <a href="Admin">Home</a>
                                 </li>
                                 <li id="ToogleMenu">
                                     <a href="#SubMenu" data-toggle="collapse" data-parent="#ToogleMenu">Admin<i class="caret"></i></a>
                                     <div class="collapse list-group-submenu" id="SubMenu">
-                                        <a href="Admin" class="list-group-item" data-parent="#SubMenu">Home</a>
                                         <a href="AdminUsers" class="list-group-item" data-parent="#SubMenu">Utilizador</a>
-                                        <a href="AdminAutor" class="list-group-item" data-parent="#SubMenu">Autor</a>
+                                        <a href="Autor/" class="list-group-item" data-parent="#SubMenu">Autor</a>
                                     </div>
                                 </li>                                
                                 <li>

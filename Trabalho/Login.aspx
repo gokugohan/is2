@@ -1,17 +1,19 @@
 ﻿<%@ Page Title="Log in" Language="C#" MasterPageFile="~/MasterPages/MasterPage.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="login" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContentPlaceHolder" Runat="Server">
+    <div id="animWrapper">
         <div class="row">
             <div class="col-md-12">
                 <asp:LoginView ID="LoginView1" runat="server">
                     <LoggedInTemplate>
-                        <h3>Está logado como "<asp:LoginName ID="LoginName1" runat="server" />".Logout e fazer login com a conta do administrador .</h3>
+                        <h3>Está logado como "<asp:LoginName ID="LoginName1" runat="server" />
+                            ".Logout e fazer login com a conta do administrador .</h3>
                     </LoggedInTemplate>
                     <AnonymousTemplate>
                         <asp:Login ID="Login1" runat="server"
                             CreateUserText="Sign up for a new account"
                             CreateUserUrl="~/SignUp"
-                            DestinationPageUrl="~/Perfil"
+                            DestinationPageUrl="~/"
                             RememberMeSet="True"
                             LoginButtonType="Link"
                             LoginButtonStyle-CssClass="btn btn-success"
@@ -55,13 +57,13 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3"  style="color: Red;">
-                                                    <asp:Literal ID="FailureText" runat="server" EnableViewState="False"></asp:Literal>
+                                            <td colspan="3" style="color: Red;">
+                                                <asp:Literal ID="FailureText" runat="server" EnableViewState="False"></asp:Literal>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td colspan="3">
-                                                <asp:LinkButton ID="LoginLinkButton"  runat="server" CommandName="Login" CssClass="btn btn-success" ValidationGroup="ctl00$Login1">Log In</asp:LinkButton>
+                                                <asp:LinkButton ID="LoginLinkButton" runat="server" CommandName="Login" CssClass="btn btn-success" ValidationGroup="ctl00$Login1">Log In</asp:LinkButton>
                                             </td>
                                         </tr>
                                         <tr>
@@ -78,10 +80,11 @@
                         </asp:Login>
                     </AnonymousTemplate>
                 </asp:LoginView>
-               
-                
+
+
             </div>
         </div>
+    </div>
 </asp:Content>
 
 

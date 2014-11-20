@@ -2,6 +2,7 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
     <siteMapNode url="./" title="Home"  description="Home page">
       <siteMapNode title="Biblioteca">
+        <siteMapNode url="./Livros" title="Livros"  description="Livros" />
         <siteMapNode url="./PesquisaLivros" title="Pesquisar livros"  description="Pesquisar livros" />
         <siteMapNode url="./RequisitarLivros" title="Requisitar livros"  description="Requisitar livros" />
       </siteMapNode>

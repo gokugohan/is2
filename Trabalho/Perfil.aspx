@@ -1,7 +1,9 @@
 ﻿<%@ Page Title="My Profile" Language="C#" MasterPageFile="~/MasterPages/MasterPage.master" AutoEventWireup="true" CodeFile="Perfil.aspx.cs" Inherits="MyProfiel" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContentPlaceHolder" Runat="Server">
-    <div class="jumbotron">
+   
+    <div id="animWrapper">
+        <div class="jumbotron">
         <asp:Label ID="Label2" runat="server"></asp:Label>
         <asp:LoginView ID="LoginView1" runat="server">
             <LoggedInTemplate>
@@ -201,6 +203,8 @@
             </tbody>
         </table>
     </div>
+    </div>
+    
     <script type="text/javascript">
 
         //http://www.codeproject.com/Questions/670019/Textbox-accept-only-numbers-using-java-script
@@ -229,7 +233,5 @@
         function _(id) {
             return document.getElementById(id);
         }
-
-        
     </script>
 </asp:Content>

@@ -20,6 +20,7 @@ public partial class Administrator_Default : System.Web.UI.Page
     private void ListboxUserDataBind()
     {
         MembershipUserCollection mUserCollection =  Membership.GetAllUsers();
+        
 
         List<string> listOfUser = new List<string>();
 

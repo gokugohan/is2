@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Recuperar a palavra passe" Language="C#" MasterPageFile="~/MasterPages/MasterPage.master" AutoEventWireup="true" CodeFile="RecoveryPassword.aspx.cs" Inherits="RecoveryPassord" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContentPlaceHolder" runat="Server">
+    <div id="animWrapper">
         <h1>Recuperar a palavra passe</h1>
         <asp:PasswordRecovery ID="PasswordRecovery1" runat="server" SubmitButtonType="Link" SuccessPageUrl="~/login.aspx" Font-Names="Verdana" Font-Size="10pt">
             <SubmitButtonStyle CssClass="btn btn-success" />
@@ -49,4 +50,5 @@
                 </table>
             </UserNameTemplate>
         </asp:PasswordRecovery>
+    </div>
 </asp:Content>

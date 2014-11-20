@@ -41,6 +41,12 @@
                     <li>&nbsp;
                     </li>
                     <li>
+                        <div id="loginStatusName">
+                            <asp:LoginStatus ID="LoginStatus1" runat="server" /> <asp:LoginName ID="LoginName1" CssClass="control-label" runat="server" />
+                        </div>
+                        
+                    </li>
+                    <li>
                         <div>
                             <label class="control-label">Mudar o tema</label><br />
                             <section class="row">
@@ -70,7 +76,9 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                            
+                            <%--<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>--%>
+
                             <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
                             </asp:ContentPlaceHolder>
                         </div>
@@ -88,7 +96,13 @@
                 e.preventDefault();
                 $("#wrapper").toggleClass("toggled");
             });
-    </script>
+
+            $(document).ready(function () {
+                //$("#page-content-wrapper").fadeIn("slow");
+                $("#animWrapper").fadeIn(1200);
+            });
+
+        </script>
     </form>
 </body>
 </html>

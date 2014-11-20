@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Filmes>
+  <Filme>
+    <Nome>47 Ronins</Nome>
+    <Ano>2014</Ano>
+    <Genero>Arte Marciais,Fantasia</Genero>
+    <Atores>Keanu Reeves, Hiroyuki Sanada,Ko Shibasaki</Atores>
+  </Filme>
+  <Filme>
+    <Nome>Capitão America 2 - O Soldado Universal</Nome>
+    <Ano>2013</Ano>
+    <Genero>Aventura, Ficção Científica</Genero>
+    <Atores>Chris Evans, Scarlett Johansson, Anthony Mackie</Atores>
+  </Filme>
+  <Filme>
+    <Nome>X-Men: Dias de um Futuro Esquecido </Nome>
+    <Ano>2014</Ano>
+    <Genero>Ação, Ficção científica</Genero>
+    <Atores>Hugh Jackman, James McAvoy, Michael Fassbender</Atores>
+  </Filme>
+  <Filme>
+    <Nome>Praia do Futuro</Nome>
+    <Ano>2015</Ano>
+    <Genero>Drama</Genero>
+    <Atores>Wagner Moura, Clemens Schick, Jesuíta Barbosa</Atores>
+  </Filme>
+  <Filme>
+    <Nome>O Vingadores</Nome>
+    <Ano>2014</Ano>
+    <Genero>Ação, Aventura, Ficção científica</Genero>
+    <Atores>Chris Evans, Robert Downey Jr., Mark Ruffalo</Atores>
+  </Filme>
+  <Filme>
+    <Nome>Teste</Nome>
+    <Ano>2015</Ano>
+    <Genero>Ação</Genero>
+    <Atores>Macoratti</Atores>
+  </Filme>
+</Filmes>
