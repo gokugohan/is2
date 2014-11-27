@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--Dados do utilizadores que requisitaram o livro-->
+<requisições>
+  <requisão contador="1">
+    <Utilizador IDLogin="admin">Helder Menezes</Utilizador>
+    <TituloLivro>jQuery: A sua Biblioteca JavaScript (2.ª Edição Atualizada)</TituloLivro>
+    <AutorDoLivro>Luís Soares</AutorDoLivro>
+    <Editoradolivro>Bertrand</Editoradolivro>
+    <DataEmpretimo>26-11-2014</DataEmpretimo>
+    <DataDevolucao>01-12-2014</DataDevolucao>
+  </requisão>
+  <requisão contador="2">
+    <Utilizador IDLogin="admin">Helder Menezes</Utilizador>
+    <TituloLivro>Android™ – Introdução ao Desenvolvimento de Aplicações</TituloLivro>
+    <AutorDoLivro>Ricardo Queirós</AutorDoLivro>
+    <Editoradolivro>Bertrand</Editoradolivro>
+    <DataEmpretimo>26-11-2014</DataEmpretimo>
+    <DataDevolucao>01-12-2014</DataDevolucao>
+  </requisão>
+  <requisão contador="3">
+    <Utilizador IDLogin="admin">Helder Menezes</Utilizador>
+    <TituloLivro>ASP.NET 4.5 – Curso Completo</TituloLivro>
+    <AutorDoLivro>Luís Abreu</AutorDoLivro>
+    <Editoradolivro>Bertrand</Editoradolivro>
+    <DataEmpretimo>26-11-2014</DataEmpretimo>
+    <DataDevolucao>01-12-2014</DataDevolucao>
+  </requisão>
+</requisições>

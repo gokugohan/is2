@@ -10,6 +10,7 @@ public partial class MasterPages_Publico : System.Web.UI.MasterPage
     
     protected void Page_Load(object sender, EventArgs e)
     {
+       
         if (!IsPostBack)
         {
             string selectedTheme = Page.Theme;
@@ -38,17 +39,7 @@ public partial class MasterPages_Publico : System.Web.UI.MasterPage
         PreferredTheme.Expires = DateTime.Now.AddMonths(3);
         PreferredTheme.Value = ThemeList.SelectedValue;
         Response.Cookies.Add(PreferredTheme);
-        
         Response.Redirect(Request.Url.ToString());
+        
     }
-
-
-    //protected HttpCookie createCookie(string cookieName, string cookieValue)
-    //{
-    //    HttpCookie cookie = new HttpCookie(cookieName);
-    //    cookie.Expires = DateTime.Now.AddMonths(3);
-    //    cookie.Value = cookieValue;
-
-    //    return cookie;
-    //}
 }

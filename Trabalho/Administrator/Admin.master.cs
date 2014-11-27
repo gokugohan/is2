@@ -12,4 +12,21 @@ public partial class MasterPages_Normal : System.Web.UI.MasterPage
         
     }
 
+    public HyperLink getHiperLinkControl 
+    {
+        get
+        {
+            HyperLink mHyperLink = (HyperLink)LoginView1.FindControl("HyperLink1");
+            return mHyperLink;
+        }
+    }
+
+    public ScriptManager getScriptManager
+    {
+        get
+        {
+            return ScriptManager1;
+        }
+    }
+
 }

@@ -116,7 +116,7 @@
                 
             </LoggedInTemplate>
             <AnonymousTemplate>
-                <p>Tem que fazer <b>log in</b> para visualizar/atualizar o seu perfil, caso contrário, <a href="SignUp">criar novo utilizador</a> ou fazer <a href="Login">login.</a></p>
+                <p>Tem que fazer <b>log in</b> para visualizar/atualizar o seu perfil, caso contrário, <a href="SignUp">cria novo utilizador</a> ou faz o <a href="Login">login.</a></p>
             </AnonymousTemplate>
         </asp:LoginView>
         <table class="table table-hover table-bordered">

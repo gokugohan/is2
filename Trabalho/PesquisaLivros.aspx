@@ -3,8 +3,9 @@
     <div id="animWrapper">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="text-center">Pesquisas livros</h1>
+                
             </div>
         </div>
     </div>
+
 </asp:Content>

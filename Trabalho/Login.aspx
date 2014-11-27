@@ -6,8 +6,7 @@
             <div class="col-md-12">
                 <asp:LoginView ID="LoginView1" runat="server">
                     <LoggedInTemplate>
-                        <h3>Está logado como "<asp:LoginName ID="LoginName1" runat="server" />
-                            ".Logout e fazer login com a conta do administrador .</h3>
+                        <h3>Está logado como "<asp:LoginName ID="LoginName1" runat="server" /></h3>
                     </LoggedInTemplate>
                     <AnonymousTemplate>
                         <asp:Login ID="Login1" runat="server"

@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Admin.master.cs" Inherits="MasterPages_Normal" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" EnableTheming="true" CodeFile="Admin.master.cs" Inherits="MasterPages_Normal" %>
 
 <!DOCTYPE html>
 
@@ -14,7 +14,14 @@
 </head>
 <body>
     <form id="form1" runat="server">
+       <script src="../Scripts/jquery-2.1.1.js"></script>
+     <script src="../Scripts/bootstrap.min.js"></script>
+     <script src="../Scripts/jquery.quicksearch.js"></script>
+
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <a href="#menu-toggle"  id="menu-toggle">
+            <img class="menuIcon" src="../App_Themes/Normal/menu.png" />
+        </a>  
         <div id="wrapper">
             <!-- Sidebar -->
             <div id="sidebar-wrapper">
@@ -23,22 +30,81 @@
                         <a href="#" id="sidebrandBrand">Gerir biblioteca
                     </a>
                     </li>
-                    <asp:ContentPlaceHolder ID="CustomMenuContentPlaceHolder" runat="server">
+                    <asp:ContentPlaceHolder runat="server" ID="MenuMain">
                     </asp:ContentPlaceHolder>
+
+                    <li>
+                        <a href="./Autor">Autor</a>
+                    </li>
+                    <li>
+                        <a href="./Editora">Editora</a>
+                    </li>
+                    <li>
+                        <a href="./Categoria">Categoria</a>
+                    </li>
+                    <li>
+                        <a href="./Livro">Livro</a><!-- gerir também a categoria do livro -->
+                    </li>
+                    <li>
+                        <a href="./Users">Users</a>
+                    </li>
+                    <li>
+
+                    </li>
+                    <li>
+                        <div id="loginStatusName">
+                            <asp:LoginStatus ID="LoginStatus1" runat="server" />
+                            <asp:LoginName ID="LoginName1" CssClass="control-label" runat="server" />
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <asp:LoginView ID="LoginView1" runat="server">
+                                <RoleGroups>
+                                    <asp:RoleGroup Roles="Administrator">
+                                        <ContentTemplate>
+                                            <asp:HyperLink ID="HyperLink1" runat="server">Switch to home page</asp:HyperLink>
+                                        </ContentTemplate>
+                                    </asp:RoleGroup>
+                                </RoleGroups>
+                            </asp:LoginView>
+                        </div>
+                    </li>
+                    <li>
+                        <Adds:WebUserControl runat="server" ID="WebUserControl" />
+                    </li>
+
                 </ul>
 
             </div>
-           
+
             <!-- Page Content -->
             <div id="page-content-wrapper">
                 <div class="container-fluid">
-                    <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
-                    </asp:ContentPlaceHolder>
-
+                    <div class="row">
+                        <div class="col-md-12">
+                            <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                    </div>
                 </div>
             </div>
-            </div>
+
+        </div>
         
+        
+        <script>
+            $(document).ready(function () {
+                
+                $("#menu-toggle").click(function (e) {
+                    e.preventDefault();
+                    console.log("menu-toggle is clicked");
+                    $("#wrapper").toggleClass("toggled");
+                });
+            });
+            
+        </script>
+
     </form>
 </body>
 </html>

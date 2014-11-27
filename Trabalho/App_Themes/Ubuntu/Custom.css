@@ -1,0 +1,47 @@
+﻿body {
+    background-color:rgba(94,39,80,0.50);
+}
+
+
+#BodyContentContainer{
+            width:100%;
+            margin:0px;
+            margin-top:65px;
+            /*background-color:rgba(94,39,80,0.50);*/
+            
+}
+
+#divMainContent{
+    /*background-color:rgba(94,39,80,0.50);*/
+    border-radius:10px;
+    border:1px dotted;
+    min-height:25%;
+    max-height:100%;
+    height:75%;
+}
+
+#LoginStatus-name{
+    line-height: 20px;
+    position: relative;  display: block;  
+    padding: 15px 15px;
+}
+
+#LoginStatus-name>a{
+    text-decoration:none;
+    color:#ffffff;
+}
+
+#LoginStatus-name>span{
+    color:#ffffff;
+}
+
+#LoginStatus-name:hover{
+    background-color:#97310E;
+}
+
+
+ #animWrapper{
+    display:none;
+}
+
+

@@ -1,0 +1,591 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BibliotecaModelNamespace.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Table_Autor">
+          <Key>
+            <PropertyRef Name="ID_Autor" />
+          </Key>
+          <Property Name="ID_Autor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Apelido" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table_Categoria">
+          <Key>
+            <PropertyRef Name="ID_Categoria" />
+          </Key>
+          <Property Name="ID_Categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome_Categoria" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table_Editora">
+          <Key>
+            <PropertyRef Name="ID_Editora" />
+          </Key>
+          <Property Name="ID_Editora" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="125" />
+        </EntityType>
+        <EntityType Name="Table_Livro">
+          <Key>
+            <PropertyRef Name="ID_Livro" />
+          </Key>
+          <Property Name="ID_Livro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ISBN" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="150" />
+          <Property Name="Data_Publicacao" Type="date" />
+          <Property Name="Categoria" Type="int" Nullable="false" />
+          <Property Name="Editora" Type="int" Nullable="false" />
+          <Property Name="Autor" Type="int" />
+        </EntityType>
+        <EntityType Name="Table_Utilizador">
+          <Key>
+            <PropertyRef Name="ID_Utilizador" />
+          </Key>
+          <Property Name="ID_Utilizador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Apelido" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="NumeroContato" Type="varchar" MaxLength="12" />
+          <Property Name="Email" Type="varchar" MaxLength="25" />
+          <Property Name="EnderecoMorada" Type="varchar" MaxLength="100" />
+          <Property Name="NomeUtilizador" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Table_UtilizadorLivro">
+          <Key>
+            <PropertyRef Name="ID_Utilizador" />
+            <PropertyRef Name="ID_Livro" />
+          </Key>
+          <Property Name="ID_Utilizador" Type="int" Nullable="false" />
+          <Property Name="ID_Livro" Type="int" Nullable="false" />
+          <Property Name="dataEmprestimo" Type="date" Nullable="false" />
+          <Property Name="dateDevolucao" Type="date" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\IS2\TRABALHO\APP_DATA\TRABALHOBIB.MDF.dbo.View_Livro' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_Livro">
+          <Key>
+            <PropertyRef Name="Código" />
+            <PropertyRef Name="ISBN" />
+            <PropertyRef Name="Titulo" />
+            <PropertyRef Name="Nome_Categoria" />
+            <PropertyRef Name="Editora" />
+            <PropertyRef Name="Autor" />
+          </Key>
+          <Property Name="Código" Type="int" Nullable="false" />
+          <Property Name="ISBN" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Data publicação" Type="date" />
+          <Property Name="Nome_Categoria" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Editora" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Autor" Type="varchar" MaxLength="51" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\IS2\TRABALHO\APP_DATA\TRABALHOBIB.MDF.dbo.view_utilizador_req_livro' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_utilizador_req_livro">
+          <Key>
+            <PropertyRef Name="Nome" />
+            <PropertyRef Name="Autor" />
+            <PropertyRef Name="Editora" />
+            <PropertyRef Name="dataEmprestimo" />
+            <PropertyRef Name="dateDevolucao" />
+          </Key>
+          <Property Name="Nome" Type="varchar" MaxLength="51" Nullable="false" />
+          <Property Name="IDLogin" Type="nvarchar" MaxLength="100" />
+          <Property Name="Titulo" Type="varchar" MaxLength="150" />
+          <Property Name="Autor" Type="varchar" MaxLength="51" Nullable="false" />
+          <Property Name="Editora" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="dataEmprestimo" Type="date" Nullable="false" />
+          <Property Name="dateDevolucao" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Table_Liv__Autor__45544755">
+          <End Role="Table_Autor" Type="Self.Table_Autor" Multiplicity="0..1" />
+          <End Role="Table_Livro" Type="Self.Table_Livro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Autor">
+              <PropertyRef Name="ID_Autor" />
+            </Principal>
+            <Dependent Role="Table_Livro">
+              <PropertyRef Name="Autor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Table_Liv__Categ__66603565">
+          <End Role="Table_Categoria" Type="Self.Table_Categoria" Multiplicity="1" />
+          <End Role="Table_Livro" Type="Self.Table_Livro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Categoria">
+              <PropertyRef Name="ID_Categoria" />
+            </Principal>
+            <Dependent Role="Table_Livro">
+              <PropertyRef Name="Categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Table_Liv__Edito__656C112C">
+          <End Role="Table_Editora" Type="Self.Table_Editora" Multiplicity="1" />
+          <End Role="Table_Livro" Type="Self.Table_Livro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Editora">
+              <PropertyRef Name="ID_Editora" />
+            </Principal>
+            <Dependent Role="Table_Livro">
+              <PropertyRef Name="Editora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Table_Uti__ID_Li__6E01572D">
+          <End Role="Table_Livro" Type="Self.Table_Livro" Multiplicity="1" />
+          <End Role="Table_UtilizadorLivro" Type="Self.Table_UtilizadorLivro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Livro">
+              <PropertyRef Name="ID_Livro" />
+            </Principal>
+            <Dependent Role="Table_UtilizadorLivro">
+              <PropertyRef Name="ID_Livro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Table_Uti__ID_Ut__6D0D32F4">
+          <End Role="Table_Utilizador" Type="Self.Table_Utilizador" Multiplicity="1" />
+          <End Role="Table_UtilizadorLivro" Type="Self.Table_UtilizadorLivro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Utilizador">
+              <PropertyRef Name="ID_Utilizador" />
+            </Principal>
+            <Dependent Role="Table_UtilizadorLivro">
+              <PropertyRef Name="ID_Utilizador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="ProcedureInserirAutor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nome" Type="varchar" Mode="In" />
+          <Parameter Name="Apelido" Type="varchar" Mode="In" />
+          <Parameter Name="Current_ID_ADD_RET" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="ProcedureInserirCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nome" Type="varchar" Mode="In" />
+          <Parameter Name="Current_ID_ADD_RET" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="ProcedureInserirEditora" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nome" Type="varchar" Mode="In" />
+          <Parameter Name="Descricao" Type="varchar" Mode="In" />
+          <Parameter Name="Current_ID_ADD_RET" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="ProcedureInserirLivro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ISBN" Type="varchar" Mode="In" />
+          <Parameter Name="Titulo" Type="varchar" Mode="In" />
+          <Parameter Name="DataPublicacao" Type="date" Mode="In" />
+          <Parameter Name="Autor" Type="int" Mode="In" />
+          <Parameter Name="Editora" Type="int" Mode="In" />
+          <Parameter Name="Categoria" Type="int" Mode="In" />
+          <Parameter Name="Current_ID_ADD_RET" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="ProcedureInserirUtilizador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nome" Type="varchar" Mode="In" />
+          <Parameter Name="Apelido" Type="varchar" Mode="In" />
+          <Parameter Name="NumeroContato" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Endereco" Type="varchar" Mode="In" />
+          <Parameter Name="Current_ID_ADD_RET" Type="int" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="BibliotecaModelNamespaceStoreContainer">
+          <EntitySet Name="Table_Autor" EntityType="Self.Table_Autor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Categoria" EntityType="Self.Table_Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Editora" EntityType="Self.Table_Editora" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Livro" EntityType="Self.Table_Livro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Utilizador" EntityType="Self.Table_Utilizador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_UtilizadorLivro" EntityType="Self.Table_UtilizadorLivro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_Livro" EntityType="Self.View_Livro" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Livro].[Código] AS [Código], 
+    [View_Livro].[ISBN] AS [ISBN], 
+    [View_Livro].[Titulo] AS [Titulo], 
+    [View_Livro].[Data publicação] AS [Data publicação], 
+    [View_Livro].[Nome_Categoria] AS [Nome_Categoria], 
+    [View_Livro].[Editora] AS [Editora], 
+    [View_Livro].[Autor] AS [Autor]
+    FROM [dbo].[View_Livro] AS [View_Livro]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_utilizador_req_livro" EntityType="Self.view_utilizador_req_livro" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_utilizador_req_livro].[Nome] AS [Nome], 
+    [view_utilizador_req_livro].[IDLogin] AS [IDLogin], 
+    [view_utilizador_req_livro].[Titulo] AS [Titulo], 
+    [view_utilizador_req_livro].[Autor] AS [Autor], 
+    [view_utilizador_req_livro].[Editora] AS [Editora], 
+    [view_utilizador_req_livro].[dataEmprestimo] AS [dataEmprestimo], 
+    [view_utilizador_req_livro].[dateDevolucao] AS [dateDevolucao]
+    FROM [dbo].[view_utilizador_req_livro] AS [view_utilizador_req_livro]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Table_Liv__Autor__45544755" Association="Self.FK__Table_Liv__Autor__45544755">
+            <End Role="Table_Autor" EntitySet="Table_Autor" />
+            <End Role="Table_Livro" EntitySet="Table_Livro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Table_Liv__Categ__66603565" Association="Self.FK__Table_Liv__Categ__66603565">
+            <End Role="Table_Categoria" EntitySet="Table_Categoria" />
+            <End Role="Table_Livro" EntitySet="Table_Livro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Table_Liv__Edito__656C112C" Association="Self.FK__Table_Liv__Edito__656C112C">
+            <End Role="Table_Editora" EntitySet="Table_Editora" />
+            <End Role="Table_Livro" EntitySet="Table_Livro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Table_Uti__ID_Li__6E01572D" Association="Self.FK__Table_Uti__ID_Li__6E01572D">
+            <End Role="Table_Livro" EntitySet="Table_Livro" />
+            <End Role="Table_UtilizadorLivro" EntitySet="Table_UtilizadorLivro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Table_Uti__ID_Ut__6D0D32F4" Association="Self.FK__Table_Uti__ID_Ut__6D0D32F4">
+            <End Role="Table_Utilizador" EntitySet="Table_Utilizador" />
+            <End Role="Table_UtilizadorLivro" EntitySet="Table_UtilizadorLivro" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BibliotecaModelNamespace" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Table_Autor">
+          <Key>
+            <PropertyRef Name="ID_Autor" />
+          </Key>
+          <Property Name="ID_Autor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apelido" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Table_Livro" Relationship="Self.FK__Table_Liv__Autor__45544755" FromRole="Table_Autor" ToRole="Table_Livro" />
+        </EntityType>
+        <EntityType Name="Table_Categoria">
+          <Key>
+            <PropertyRef Name="ID_Categoria" />
+          </Key>
+          <Property Name="ID_Categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome_Categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Table_Livro" Relationship="Self.FK__Table_Liv__Categ__66603565" FromRole="Table_Categoria" ToRole="Table_Livro" />
+        </EntityType>
+        <EntityType Name="Table_Editora">
+          <Key>
+            <PropertyRef Name="ID_Editora" />
+          </Key>
+          <Property Name="ID_Editora" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descricao" Type="String" MaxLength="125" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Table_Livro" Relationship="Self.FK__Table_Liv__Edito__656C112C" FromRole="Table_Editora" ToRole="Table_Livro" />
+        </EntityType>
+        <EntityType Name="Table_Livro">
+          <Key>
+            <PropertyRef Name="ID_Livro" />
+          </Key>
+          <Property Name="ID_Livro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ISBN" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Titulo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Data_Publicacao" Type="DateTime" Precision="0" />
+          <Property Name="Categoria" Type="Int32" Nullable="false" />
+          <Property Name="Editora" Type="Int32" Nullable="false" />
+          <Property Name="Autor" Type="Int32" />
+          <NavigationProperty Name="Table_Autor" Relationship="Self.FK__Table_Liv__Autor__45544755" FromRole="Table_Livro" ToRole="Table_Autor" />
+          <NavigationProperty Name="Table_Categoria" Relationship="Self.FK__Table_Liv__Categ__66603565" FromRole="Table_Livro" ToRole="Table_Categoria" />
+          <NavigationProperty Name="Table_Editora" Relationship="Self.FK__Table_Liv__Edito__656C112C" FromRole="Table_Livro" ToRole="Table_Editora" />
+          <NavigationProperty Name="Table_UtilizadorLivro" Relationship="Self.FK__Table_Uti__ID_Li__6E01572D" FromRole="Table_Livro" ToRole="Table_UtilizadorLivro" />
+        </EntityType>
+        <EntityType Name="Table_Utilizador">
+          <Key>
+            <PropertyRef Name="ID_Utilizador" />
+          </Key>
+          <Property Name="ID_Utilizador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apelido" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NumeroContato" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="EnderecoMorada" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NomeUtilizador" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Table_UtilizadorLivro" Relationship="Self.FK__Table_Uti__ID_Ut__6D0D32F4" FromRole="Table_Utilizador" ToRole="Table_UtilizadorLivro" />
+        </EntityType>
+        <EntityType Name="Table_UtilizadorLivro">
+          <Key>
+            <PropertyRef Name="ID_Utilizador" />
+            <PropertyRef Name="ID_Livro" />
+          </Key>
+          <Property Name="ID_Utilizador" Type="Int32" Nullable="false" />
+          <Property Name="ID_Livro" Type="Int32" Nullable="false" />
+          <Property Name="dataEmprestimo" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dateDevolucao" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Table_Livro" Relationship="Self.FK__Table_Uti__ID_Li__6E01572D" FromRole="Table_UtilizadorLivro" ToRole="Table_Livro" />
+          <NavigationProperty Name="Table_Utilizador" Relationship="Self.FK__Table_Uti__ID_Ut__6D0D32F4" FromRole="Table_UtilizadorLivro" ToRole="Table_Utilizador" />
+        </EntityType>
+        <EntityType Name="View_Livro">
+          <Key>
+            <PropertyRef Name="Código" />
+            <PropertyRef Name="ISBN" />
+            <PropertyRef Name="Titulo" />
+            <PropertyRef Name="Nome_Categoria" />
+            <PropertyRef Name="Editora" />
+            <PropertyRef Name="Autor" />
+          </Key>
+          <Property Name="Código" Type="Int32" Nullable="false" />
+          <Property Name="ISBN" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Data_publicação" Type="DateTime" Precision="0" />
+          <Property Name="Nome_Categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Editora" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Autor" Type="String" MaxLength="51" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="view_utilizador_req_livro">
+          <Key>
+            <PropertyRef Name="Nome" />
+            <PropertyRef Name="Autor" />
+            <PropertyRef Name="Editora" />
+            <PropertyRef Name="dataEmprestimo" />
+            <PropertyRef Name="dateDevolucao" />
+          </Key>
+          <Property Name="Nome" Type="String" MaxLength="51" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDLogin" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Titulo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Autor" Type="String" MaxLength="51" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Editora" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dataEmprestimo" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dateDevolucao" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <Association Name="FK__Table_Liv__Autor__45544755">
+          <End Role="Table_Autor" Type="Self.Table_Autor" Multiplicity="0..1" />
+          <End Role="Table_Livro" Type="Self.Table_Livro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Autor">
+              <PropertyRef Name="ID_Autor" />
+            </Principal>
+            <Dependent Role="Table_Livro">
+              <PropertyRef Name="Autor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Table_Liv__Categ__66603565">
+          <End Role="Table_Categoria" Type="Self.Table_Categoria" Multiplicity="1" />
+          <End Role="Table_Livro" Type="Self.Table_Livro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Categoria">
+              <PropertyRef Name="ID_Categoria" />
+            </Principal>
+            <Dependent Role="Table_Livro">
+              <PropertyRef Name="Categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Table_Liv__Edito__656C112C">
+          <End Role="Table_Editora" Type="Self.Table_Editora" Multiplicity="1" />
+          <End Role="Table_Livro" Type="Self.Table_Livro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Editora">
+              <PropertyRef Name="ID_Editora" />
+            </Principal>
+            <Dependent Role="Table_Livro">
+              <PropertyRef Name="Editora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Table_Uti__ID_Li__6E01572D">
+          <End Role="Table_Livro" Type="Self.Table_Livro" Multiplicity="1" />
+          <End Role="Table_UtilizadorLivro" Type="Self.Table_UtilizadorLivro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Livro">
+              <PropertyRef Name="ID_Livro" />
+            </Principal>
+            <Dependent Role="Table_UtilizadorLivro">
+              <PropertyRef Name="ID_Livro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Table_Uti__ID_Ut__6D0D32F4">
+          <End Role="Table_Utilizador" Type="Self.Table_Utilizador" Multiplicity="1" />
+          <End Role="Table_UtilizadorLivro" Type="Self.Table_UtilizadorLivro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Utilizador">
+              <PropertyRef Name="ID_Utilizador" />
+            </Principal>
+            <Dependent Role="Table_UtilizadorLivro">
+              <PropertyRef Name="ID_Utilizador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BibliotecaEntity" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Autores" EntityType="Self.Table_Autor" />
+          <EntitySet Name="Categorias" EntityType="Self.Table_Categoria" />
+          <EntitySet Name="Editoras" EntityType="Self.Table_Editora" />
+          <EntitySet Name="Livros" EntityType="Self.Table_Livro" />
+          <EntitySet Name="Utilizadores" EntityType="Self.Table_Utilizador" />
+          <EntitySet Name="UtilizadoresLivros" EntityType="Self.Table_UtilizadorLivro" />
+          <EntitySet Name="View_Livro" EntityType="Self.View_Livro" />
+          <EntitySet Name="ViewUtilizadoresReqLivro" EntityType="Self.view_utilizador_req_livro" />
+          <AssociationSet Name="FK__Table_Liv__Autor__45544755" Association="Self.FK__Table_Liv__Autor__45544755">
+            <End Role="Table_Autor" EntitySet="Autores" />
+            <End Role="Table_Livro" EntitySet="Livros" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Table_Liv__Categ__66603565" Association="Self.FK__Table_Liv__Categ__66603565">
+            <End Role="Table_Categoria" EntitySet="Categorias" />
+            <End Role="Table_Livro" EntitySet="Livros" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Table_Liv__Edito__656C112C" Association="Self.FK__Table_Liv__Edito__656C112C">
+            <End Role="Table_Editora" EntitySet="Editoras" />
+            <End Role="Table_Livro" EntitySet="Livros" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Table_Uti__ID_Li__6E01572D" Association="Self.FK__Table_Uti__ID_Li__6E01572D">
+            <End Role="Table_Livro" EntitySet="Livros" />
+            <End Role="Table_UtilizadorLivro" EntitySet="UtilizadoresLivros" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Table_Uti__ID_Ut__6D0D32F4" Association="Self.FK__Table_Uti__ID_Ut__6D0D32F4">
+            <End Role="Table_Utilizador" EntitySet="Utilizadores" />
+            <End Role="Table_UtilizadorLivro" EntitySet="UtilizadoresLivros" />
+          </AssociationSet>
+          <FunctionImport Name="ProcedureInserirAutor">
+            <Parameter Name="Nome" Mode="In" Type="String" />
+            <Parameter Name="Apelido" Mode="In" Type="String" />
+            <Parameter Name="Current_ID_ADD_RET" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ProcedureInserirCategoria">
+            <Parameter Name="Nome" Mode="In" Type="String" />
+            <Parameter Name="Current_ID_ADD_RET" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ProcedureInserirEditora">
+            <Parameter Name="Nome" Mode="In" Type="String" />
+            <Parameter Name="Descricao" Mode="In" Type="String" />
+            <Parameter Name="Current_ID_ADD_RET" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ProcedureInserirLivro">
+            <Parameter Name="ISBN" Mode="In" Type="String" />
+            <Parameter Name="Titulo" Mode="In" Type="String" />
+            <Parameter Name="DataPublicacao" Mode="In" Type="DateTime" />
+            <Parameter Name="Autor" Mode="In" Type="Int32" />
+            <Parameter Name="Editora" Mode="In" Type="Int32" />
+            <Parameter Name="Categoria" Mode="In" Type="Int32" />
+            <Parameter Name="Current_ID_ADD_RET" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ProcedureInserirUtilizador">
+            <Parameter Name="Nome" Mode="In" Type="String" />
+            <Parameter Name="Apelido" Mode="In" Type="String" />
+            <Parameter Name="NumeroContato" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Endereco" Mode="In" Type="String" />
+            <Parameter Name="Current_ID_ADD_RET" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BibliotecaModelNamespaceStoreContainer" CdmEntityContainer="BibliotecaEntity">
+          <EntitySetMapping Name="Autores">
+            <EntityTypeMapping TypeName="BibliotecaModelNamespace.Table_Autor">
+              <MappingFragment StoreEntitySet="Table_Autor">
+                <ScalarProperty Name="ID_Autor" ColumnName="ID_Autor" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Apelido" ColumnName="Apelido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categorias">
+            <EntityTypeMapping TypeName="BibliotecaModelNamespace.Table_Categoria">
+              <MappingFragment StoreEntitySet="Table_Categoria">
+                <ScalarProperty Name="ID_Categoria" ColumnName="ID_Categoria" />
+                <ScalarProperty Name="Nome_Categoria" ColumnName="Nome_Categoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Editoras">
+            <EntityTypeMapping TypeName="BibliotecaModelNamespace.Table_Editora">
+              <MappingFragment StoreEntitySet="Table_Editora">
+                <ScalarProperty Name="ID_Editora" ColumnName="ID_Editora" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Livros">
+            <EntityTypeMapping TypeName="BibliotecaModelNamespace.Table_Livro">
+              <MappingFragment StoreEntitySet="Table_Livro">
+                <ScalarProperty Name="ID_Livro" ColumnName="ID_Livro" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Data_Publicacao" ColumnName="Data_Publicacao" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="Editora" ColumnName="Editora" />
+                <ScalarProperty Name="Autor" ColumnName="Autor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utilizadores">
+            <EntityTypeMapping TypeName="BibliotecaModelNamespace.Table_Utilizador">
+              <MappingFragment StoreEntitySet="Table_Utilizador">
+                <ScalarProperty Name="ID_Utilizador" ColumnName="ID_Utilizador" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Apelido" ColumnName="Apelido" />
+                <ScalarProperty Name="NumeroContato" ColumnName="NumeroContato" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EnderecoMorada" ColumnName="EnderecoMorada" />
+                <ScalarProperty Name="NomeUtilizador" ColumnName="NomeUtilizador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UtilizadoresLivros">
+            <EntityTypeMapping TypeName="BibliotecaModelNamespace.Table_UtilizadorLivro">
+              <MappingFragment StoreEntitySet="Table_UtilizadorLivro">
+                <ScalarProperty Name="ID_Utilizador" ColumnName="ID_Utilizador" />
+                <ScalarProperty Name="ID_Livro" ColumnName="ID_Livro" />
+                <ScalarProperty Name="dataEmprestimo" ColumnName="dataEmprestimo" />
+                <ScalarProperty Name="dateDevolucao" ColumnName="dateDevolucao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Livro">
+            <EntityTypeMapping TypeName="BibliotecaModelNamespace.View_Livro">
+              <MappingFragment StoreEntitySet="View_Livro">
+                <ScalarProperty Name="Código" ColumnName="Código" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Data_publicação" ColumnName="Data publicação" />
+                <ScalarProperty Name="Nome_Categoria" ColumnName="Nome_Categoria" />
+                <ScalarProperty Name="Editora" ColumnName="Editora" />
+                <ScalarProperty Name="Autor" ColumnName="Autor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewUtilizadoresReqLivro">
+            <EntityTypeMapping TypeName="BibliotecaModelNamespace.view_utilizador_req_livro">
+              <MappingFragment StoreEntitySet="view_utilizador_req_livro">
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="IDLogin" ColumnName="IDLogin" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Autor" ColumnName="Autor" />
+                <ScalarProperty Name="Editora" ColumnName="Editora" />
+                <ScalarProperty Name="dataEmprestimo" ColumnName="dataEmprestimo" />
+                <ScalarProperty Name="dateDevolucao" ColumnName="dateDevolucao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ProcedureInserirAutor" FunctionName="BibliotecaModelNamespace.Store.ProcedureInserirAutor" />
+          <FunctionImportMapping FunctionImportName="ProcedureInserirCategoria" FunctionName="BibliotecaModelNamespace.Store.ProcedureInserirCategoria" />
+          <FunctionImportMapping FunctionImportName="ProcedureInserirEditora" FunctionName="BibliotecaModelNamespace.Store.ProcedureInserirEditora" />
+          <FunctionImportMapping FunctionImportName="ProcedureInserirLivro" FunctionName="BibliotecaModelNamespace.Store.ProcedureInserirLivro" />
+          <FunctionImportMapping FunctionImportName="ProcedureInserirUtilizador" FunctionName="BibliotecaModelNamespace.Store.ProcedureInserirUtilizador" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

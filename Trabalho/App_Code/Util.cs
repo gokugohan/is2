@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Security;
 
 /// <summary>
-/// Summary description for Util
+/// Summary description for LivroEmprestado
 /// </summary>
 public class Util
 {
-	public Util()
-	{
-	}
 
+    public static List<view_utilizador_req_livro> getLivrosEmprestadosPelosUtilizadores()
+    {
+        using (var entidade = new BibliotecaEntity())
+        {
+            var livroReqUtil = from lr in entidade.ViewUtilizadoresReqLivro
+                               select lr;
 
-   
+            return livroReqUtil.ToList();
+        }
+    }
+    
 }

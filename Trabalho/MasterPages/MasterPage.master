@@ -14,6 +14,10 @@
 
     <title></title>  
     <link rel="shortcut icon" href="Images/favicon.ico" />
+    <script src="../Scripts/jquery-2.1.1.js"></script>
+
+        <script src="../Scripts/bootstrap.min.js"></script>
+        <script src="../Scripts/jquery.quicksearch.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -37,11 +41,11 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Biblioteca <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="Livros">Livros</a></li>
-                                    <li><a href="PesquisaLivros">Pesquisar livros</a></li>
                                     <li><a href="RequisitarLivros">Requisitar livros</a></li>
+                                    <li><a href="Contato.aspx">Contato</a></li>
                                 </ul>
                             </li>
-                            <li><a href="Contato.aspx">Contato</a></li>
+                            
                             <li>
                                 <div id="LoginStatus-name">
                                      <asp:LoginStatus ID="LoginStatus2" runat="server" /> &nbsp;
@@ -65,6 +69,18 @@
                         <SelectedNodeStyle HorizontalPadding="0px" VerticalPadding="0px" Font-Underline="True" ForeColor="#5555DD"></SelectedNodeStyle>
                     </asp:TreeView>
                     <asp:SiteMapDataSource runat="server" ID="SiteMapDataSource1"></asp:SiteMapDataSource>
+                    <br />
+                    <asp:LoginView ID="LoginView1" runat="server">
+                        <RoleGroups>
+                            <asp:RoleGroup Roles="Administrator">
+                                <ContentTemplate>
+                                    <a href="Administrator/">Switch to admin page</a>
+                                </ContentTemplate>
+                            </asp:RoleGroup>
+                        </RoleGroups>
+                    </asp:LoginView>
+                    <br />
+                    
                 </div>
                 <div class="col-md-7" id="divMainContent">
                     <asp:SiteMapPath ID="SiteMapPath1" runat="server"></asp:SiteMapPath>
@@ -76,16 +92,13 @@
                     <div>
                         <label class="control-label">Mudar o tema</label><br />
                         <asp:DropDownList ID="ThemeList" CssClass="form-control" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ThemeList_SelectedIndexChanged">
-                            <asp:ListItem>MyBootstrapTheme</asp:ListItem>
+                            <asp:ListItem>Ubuntu</asp:ListItem>
                             <asp:ListItem>Normal</asp:ListItem>
                         </asp:DropDownList>
                         <br />
                         <br />
-
-                        <br />
                         <br />
                         <Adds:WebUserControl runat="server" ID="WebUserControl" />
-                        <%--<asp:ContentPlaceHolder ID="AddsPlaceHolder" runat="server"></asp:ContentPlaceHolder>--%>
                     </div>
                     <br />
                     <div>
@@ -93,7 +106,6 @@
                     </div>
                 </div>
 
-                <hr />
                 <div class="row" id="footer">
                     <div class="col-sm-12 col-lg-12 col-xs-12 col-md-12">
                         <footer>
@@ -103,8 +115,6 @@
                 </div>
             </div>
 
-            <script src="Scripts/jquery-2.1.1.min.js"></script>
-            <script src="../Scripts/bootstrap.min.js"></script>
             <script>
                 $(document).ready(function () {
                     //$("#page-content-wrapper").fadeIn("slow");

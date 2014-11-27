@@ -66,11 +66,11 @@
 .sidebar-nav li a {
     display: inline-table;
     text-decoration: none;
-    color: #999999;
+    color: #000000;
 }
 
 .sidebar-nav li div {
-    display: inline-table;
+    /*display: inline-table;*/
 }
 
 .sidebar-nav li a:hover {
@@ -91,11 +91,11 @@
 }
 
 .sidebar-nav > .sidebar-brand a {
-    color: #999999;
+    color: #000000;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
-    color: #fff;
+    
     background: none;
 }
 
@@ -109,7 +109,7 @@
     }
 
     #sidebar-wrapper {
-        width: 290px;
+        width: 20%;
     }
 
     #wrapper.toggled #sidebar-wrapper {

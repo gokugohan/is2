@@ -12,9 +12,16 @@
     <title></title>
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
+     <script src="../Scripts/jquery-2.1.1.js"></script>
+     <script src="../Scripts/bootstrap.min.js"></script>
+     <script src="../Scripts/jquery.quicksearch.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
+        <a href="#menu-toggle"  id="menu-toggle">
+            <img class="menuIcon" src="../App_Themes/Normal/menu.png" />
+        </a>
+        
         <div id="wrapper">
 
             <!-- Sidebar -->
@@ -36,23 +43,34 @@
                         <asp:SiteMapDataSource runat="server" ID="SiteMapDataSource1"></asp:SiteMapDataSource>
 
                     </li>
-                    <li>&nbsp;
-                    </li>
-                    <li>&nbsp;
+                    
+                    <li>
+                        <div class="div1">
+                            <asp:LoginStatus ID="LoginStatus1" runat="server" />
+                            <asp:LoginName ID="LoginName1" CssClass="control-label" runat="server" />
+                        </div>
                     </li>
                     <li>
-                        <div id="loginStatusName">
-                            <asp:LoginStatus ID="LoginStatus1" runat="server" /> <asp:LoginName ID="LoginName1" CssClass="control-label" runat="server" />
+                        <div class="div1">
+                            <asp:LoginView ID="LoginView1" runat="server">
+                                <RoleGroups>
+                                    <asp:RoleGroup Roles="Administrator">
+                                        <ContentTemplate>
+                                            <a href="Administrator/">Switch to admin page</a>
+                                        </ContentTemplate>
+                                    </asp:RoleGroup>
+                                </RoleGroups>
+                            </asp:LoginView>
                         </div>
-                        
+
                     </li>
                     <li>
                         <div>
                             <label class="control-label">Mudar o tema</label><br />
                             <section class="row">
-                                <section class="col-sm-8">
-                                    <asp:DropDownList ID="ThemeList" CssClass="form-control moveLeft35px" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ThemeList_SelectedIndexChanged">
-                                        <asp:ListItem>MyBootstrapTheme</asp:ListItem>
+                                <section class="col-lg-12">
+                                    <asp:DropDownList ID="ThemeList" CssClass="form-control" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ThemeList_SelectedIndexChanged">
+                                        <asp:ListItem>Ubuntu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</asp:ListItem>
                                         <asp:ListItem>Normal</asp:ListItem>
                                     </asp:DropDownList>
                                 </section>
@@ -63,9 +81,7 @@
                         <hr />
                     </li>
                     <li>
-                        <%--<Adds:WebUserControl runat="server" ID="WebUserControl" />--%>
-
-                        <asp:AdRotator ID="AdRotator1" AdvertisementFile="~/Advertisement.xml" runat="server" CssClass="img-responsive" />
+                        <Adds:WebUserControl runat="server" ID="WebUserControl" />
                     </li>
                 </ul>
 
@@ -76,9 +92,6 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            
-                            <%--<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>--%>
-
                             <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
                             </asp:ContentPlaceHolder>
                         </div>
@@ -87,10 +100,7 @@
             </div>
 
         </div>
-        <script src="../Scripts/jquery-2.1.1.js"></script>
-
-        <script src="../Scripts/bootstrap.min.js"></script>
-
+       
         <script>
             $("#menu-toggle").click(function (e) {
                 e.preventDefault();
@@ -101,6 +111,7 @@
                 //$("#page-content-wrapper").fadeIn("slow");
                 $("#animWrapper").fadeIn(1200);
             });
+            
 
         </script>
     </form>

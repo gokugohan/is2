@@ -33,11 +33,14 @@ public partial class MasterPages_Normal : System.Web.UI.MasterPage
 
     protected void ThemeList_SelectedIndexChanged(object sender, EventArgs e)
     {
+        
         HttpCookie PreferredTheme = new HttpCookie("PreferredTheme");
         PreferredTheme.Expires = DateTime.Now.AddMonths(3);
         PreferredTheme.Value = ThemeList.SelectedValue;
         Response.Cookies.Add(PreferredTheme);
 
         Response.Redirect(Request.Url.ToString());
+
+
     }
 }

@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.ModelBinding;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -16,7 +17,6 @@ public partial class _Default : BasePage
     protected void Page_Load(object sender, EventArgs e)
     {
         showUserInfo();
-        
     }
 
     private void showUserInfo()
@@ -53,4 +53,5 @@ public partial class _Default : BasePage
         
         
     }
+   
 }

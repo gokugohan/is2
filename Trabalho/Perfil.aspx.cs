@@ -119,6 +119,21 @@ public partial class MyProfiel : BasePage
         Profile.Endereco.Cidade = get(tbCidade);
         Profile.Endereco.Pais = get(tbPais);
 
+        using(var entidade = new BibliotecaEntity()){
+            Table_Utilizador u = new Table_Utilizador{
+                Nome = get(tbNome),
+                Apelido = get(tbApelido),
+                NumeroContato = get(tbNumeroContato),
+                Email = user.Email,
+                EnderecoMorada = "Rua: " + get(tbRua)+ " Código Postal: " + get(tbCodigoPostal)+" Cidade: " + get(tbCidade)+
+                " País: " + get(tbPais),
+                NomeUtilizador = user.UserName
+                
+            };
+
+            entidade.Utilizadores.Add(u);
+            entidade.SaveChanges();
+        }
 
         Profile.Save();
 

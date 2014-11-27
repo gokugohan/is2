@@ -69,7 +69,7 @@ public partial class Administrator_Default2 : System.Web.UI.Page
 
     protected void FilmesListView_ItemEditing(object sender, ListViewEditEventArgs e)
     {
-        arquivoXML = Server.MapPath("~/Filmes.xml");
+        arquivoXML = Server.MapPath("~/Administrator/Filmes.xml");
         FilmesListView.EditIndex = e.NewEditIndex;
         i = Convert.ToInt16(FilmesListView.EditIndex);
 
@@ -91,7 +91,7 @@ public partial class Administrator_Default2 : System.Web.UI.Page
 
     protected void FilmesListView_ItemInserting(object sender, ListViewInsertEventArgs e)
     {
-        arquivoXML = Server.MapPath("~/Filmes.xml");
+        arquivoXML = Server.MapPath("~/Administrator/Filmes.xml");
         TextBox txtNomeTextBox = (TextBox)FilmesListView.InsertItem.FindControl("txtNome");
         TextBox txtAnoTextBox = (TextBox)FilmesListView.InsertItem.FindControl("txtAno");
         TextBox txtGeneroTextBox = (TextBox)FilmesListView.InsertItem.FindControl("txtGenero");
@@ -124,7 +124,7 @@ public partial class Administrator_Default2 : System.Web.UI.Page
 
     protected void btnAtualizar_Click(object sender, EventArgs e)
     {
-        arquivoXML = Server.MapPath("~/Filmes.xml");
+        arquivoXML = Server.MapPath("~/Administrator/Filmes.xml");
 
         TextBox txtNomeTextBox = (TextBox)FilmesListView.InsertItem.FindControl("txtNome");
         TextBox txtAnoTextBox = (TextBox)FilmesListView.InsertItem.FindControl("txtAno");
