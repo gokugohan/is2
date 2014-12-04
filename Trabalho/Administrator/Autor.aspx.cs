@@ -16,7 +16,7 @@ public partial class Administrator_AdminAutor : System.Web.UI.Page
 
         if (!string.IsNullOrEmpty(mBaseUrl))
         {
-            this.Master.getHiperLinkControl.NavigateUrl = mBaseUrl;
+            //this.Master.getHiperLinkControl.NavigateUrl = mBaseUrl;
         }
         
     }
@@ -24,7 +24,7 @@ public partial class Administrator_AdminAutor : System.Web.UI.Page
 
     protected void OnDataBound(object sender, EventArgs e)
     {
-        
+
         GridViewRow row = new GridViewRow(0, 0, DataControlRowType.Footer, DataControlRowState.Normal);
 
         for (int i = 0; i < GridViewAutor.Columns.Count; i++)
@@ -46,20 +46,15 @@ public partial class Administrator_AdminAutor : System.Web.UI.Page
                 cell.Controls.Add(lbl);
                 row.Controls.Add(cell);
             }
-            
+
         }
 
-        
+
         if (GridViewAutor.HeaderRow != null)
         {
-            GridViewAutor.HeaderRow.Parent.Controls.AddAt(1, row);
-        }
-        
-    }
+            GridViewAutor.HeaderRow.Parent.Controls.AddAt(0, row);
 
-    protected void btnInserir_Click(object sender, EventArgs e)
-    {
-        Panel1.Visible = !Panel1.Visible;
+        }
+
     }
-    
 }

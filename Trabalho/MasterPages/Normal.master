@@ -18,6 +18,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <a href="#menu-toggle"  id="menu-toggle">
             <img class="menuIcon" src="../App_Themes/Normal/menu.png" />
         </a>
@@ -56,7 +57,7 @@
                                 <RoleGroups>
                                     <asp:RoleGroup Roles="Administrator">
                                         <ContentTemplate>
-                                            <a href="Administrator/">Switch to admin page</a>
+                                            <a href="Admin/">Acesso à página administrador</a>
                                         </ContentTemplate>
                                     </asp:RoleGroup>
                                 </RoleGroups>
@@ -76,6 +77,36 @@
                                 </section>
                             </section>
                         </div>
+                    </li>
+                    <li>
+                        <hr />
+                    </li>
+                    <li>
+                       <asp:Timer ID="Timer1" Interval="1000" OnTick="Timer1_Tick" runat="server"></asp:Timer>
+                        <asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" runat="server">
+                            <ContentTemplate>
+                                    <table>
+                                        <tr>
+                                            <td colspan="2">
+                                                Início(sessão): <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            
+                                            <td>
+                                                Duração de acesso
+                                            </td>
+                                            <td>
+                                                <asp:Label ID="Label1" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                            
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
+                            </Triggers>
+                        </asp:UpdatePanel>
                     </li>
                     <li>
                         <hr />

@@ -3,26 +3,34 @@
 <requisições>
   <requisão contador="1">
     <Utilizador IDLogin="admin">Helder Menezes</Utilizador>
-    <TituloLivro>jQuery: A sua Biblioteca JavaScript (2.ª Edição Atualizada)</TituloLivro>
-    <AutorDoLivro>Luís Soares</AutorDoLivro>
-    <Editoradolivro>Bertrand</Editoradolivro>
-    <DataEmpretimo>26-11-2014</DataEmpretimo>
-    <DataDevolucao>01-12-2014</DataDevolucao>
+    <Título_do_livro>jQuery: A sua Biblioteca JavaScript (2.ª Edição Atualizada)</Título_do_livro>
+    <Autor_do_Livro>Luís Soares</Autor_do_Livro>
+    <Editora_do_livro>Bertrand</Editora_do_livro>
+    <Data_de_empréstimo>26-11-2014</Data_de_empréstimo>
+    <Data_de_devolução>01-12-2014</Data_de_devolução>
   </requisão>
   <requisão contador="2">
     <Utilizador IDLogin="admin">Helder Menezes</Utilizador>
-    <TituloLivro>Android™ – Introdução ao Desenvolvimento de Aplicações</TituloLivro>
-    <AutorDoLivro>Ricardo Queirós</AutorDoLivro>
-    <Editoradolivro>Bertrand</Editoradolivro>
-    <DataEmpretimo>26-11-2014</DataEmpretimo>
-    <DataDevolucao>01-12-2014</DataDevolucao>
+    <Título_do_livro>Android™ – Introdução ao Desenvolvimento de Aplicações</Título_do_livro>
+    <Autor_do_Livro>Ricardo Queirós</Autor_do_Livro>
+    <Editora_do_livro>Bertrand</Editora_do_livro>
+    <Data_de_empréstimo>26-11-2014</Data_de_empréstimo>
+    <Data_de_devolução>01-12-2014</Data_de_devolução>
   </requisão>
   <requisão contador="3">
     <Utilizador IDLogin="admin">Helder Menezes</Utilizador>
-    <TituloLivro>ASP.NET 4.5 – Curso Completo</TituloLivro>
-    <AutorDoLivro>Luís Abreu</AutorDoLivro>
-    <Editoradolivro>Bertrand</Editoradolivro>
-    <DataEmpretimo>26-11-2014</DataEmpretimo>
-    <DataDevolucao>01-12-2014</DataDevolucao>
+    <Título_do_livro>ASP.NET 4.5 – Curso Completo</Título_do_livro>
+    <Autor_do_Livro>Luís Abreu</Autor_do_Livro>
+    <Editora_do_livro>Bertrand</Editora_do_livro>
+    <Data_de_empréstimo>26-11-2014</Data_de_empréstimo>
+    <Data_de_devolução>01-12-2014</Data_de_devolução>
+  </requisão>
+  <requisão contador="4">
+    <Utilizador IDLogin="admin">Helder Menezes</Utilizador>
+    <Título_do_livro>ASP.NET MVC</Título_do_livro>
+    <Autor_do_Livro>Luís Abreu</Autor_do_Livro>
+    <Editora_do_livro>FCA</Editora_do_livro>
+    <Data_de_empréstimo>28-11-2014</Data_de_empréstimo>
+    <Data_de_devolução>03-12-2014</Data_de_devolução>
   </requisão>
 </requisições>

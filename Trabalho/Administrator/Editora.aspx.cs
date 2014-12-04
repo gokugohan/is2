@@ -16,7 +16,6 @@ public partial class Administrator_Editora_Default : System.Web.UI.Page
     private string mFileName;
     private string mExtension;
     private string mDestinationFolder;
-    private string mStatus;
 
     private string mBaseUrl;
 
@@ -26,7 +25,7 @@ public partial class Administrator_Editora_Default : System.Web.UI.Page
 
         if (!string.IsNullOrEmpty(mBaseUrl))
         {
-            this.Master.getHiperLinkControl.NavigateUrl = mBaseUrl;
+            //this.Master.getHiperLinkControl.NavigateUrl = mBaseUrl;
         }
     }
 
@@ -41,7 +40,7 @@ public partial class Administrator_Editora_Default : System.Web.UI.Page
         txtSearch.Attributes["placeholder"] = "Pesquisar editora";
         txtSearch.CssClass = "search_textbox form-control";
 
-        ListView1.Controls.AddAt(0,txtSearch);
+        ListView1.Controls.AddAt(0, txtSearch);
         ListView1.Controls.AddAt(0, lblSearch);
     }
 
@@ -51,15 +50,11 @@ public partial class Administrator_Editora_Default : System.Web.UI.Page
         if (FileUpload1.HasFile)
         {
             this.mExtension = System.IO.Path.GetExtension(FileUpload1.FileName);
-            
-            if (this.mExtension.ToLower() != ".csv")
-            {
-                this.mStatus = "Aceita apenas o ficheiro com a extenção .csv";
-            }
-            else
+
+            if (this.mExtension.ToLower() == ".csv")
             {
                 this.mFileName = FileUpload1.FileName;
-                this.mDestinationFolder = Server.MapPath("~/Uploads/"+this.mFileName);
+                this.mDestinationFolder = Server.MapPath("~/Uploads/" + this.mFileName);
                 FileUpload1.SaveAs(this.mDestinationFolder);
 
                 processingCSVFile(mDestinationFolder);
@@ -112,7 +107,7 @@ public partial class Administrator_Editora_Default : System.Web.UI.Page
         }
 
         //fetchData(mDataTable);
-        
+
     }
 
     private void fetchData(DataTable mDataTable)

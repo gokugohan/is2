@@ -45,3 +45,9 @@
 }
 
 
+#UpdatePanel1{
+    position:fixed;
+    bottom:1px;
+    left:1px;
+    background-color:transparent;
+}

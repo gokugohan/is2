@@ -1,11 +1,10 @@
 ﻿
 body{
-    /*background-color:#405BC7;*/
-    /*background-color:rgb(174,147,167);*/
-    /*background-image:url("bg.jpg");
-    background-size:cover;*/
-    background-color:#AE93A7;
+   /*background-image:url("bg_chelsea.png");
+   max-height:100%;
+   max-width:100%;*/
 }
+
 
 #ThemeList{
     margin-left:35px;
@@ -53,7 +52,13 @@ body{
     margin-left:1%;
     position: absolute;
     z-index: 99999;
+}
 
+#UpdatePanel1{
+    position:fixed;
+    bottom:0px;
+    right:1px;
+    background-color:transparent;
 }
 
 

@@ -1,6 +1,8 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPages_Publico" %>
 
 <%@ Register Src="~/Control/WebUserControl.ascx" TagPrefix="Adds" TagName="WebUserControl" %>
+<%@ Register Src="~/Control/MenuUbuntu.ascx" TagPrefix="Menu" TagName="MenuUbuntu" %>
+
 
 <!DOCTYPE html>
 
@@ -15,51 +17,18 @@
     <title></title>  
     <link rel="shortcut icon" href="Images/favicon.ico" />
     <script src="../Scripts/jquery-2.1.1.js"></script>
-
-        <script src="../Scripts/bootstrap.min.js"></script>
-        <script src="../Scripts/jquery.quicksearch.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/jquery.quicksearch.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
-            <nav id="myNavbar" runat="server" class="navbar navbar-default navbar-fixed-top" role="navigation">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="./">Trabalho I - IS2</a>
-                    </div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="navbarCollapse">
-                        <ul class="nav navbar-nav">
-                            <li><a href="./">Home</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Biblioteca <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="Livros">Livros</a></li>
-                                    <li><a href="RequisitarLivros">Requisitar livros</a></li>
-                                    <li><a href="Contato.aspx">Contato</a></li>
-                                </ul>
-                            </li>
-                            
-                            <li>
-                                <div id="LoginStatus-name">
-                                     <asp:LoginStatus ID="LoginStatus2" runat="server" /> &nbsp;
-                                    <asp:LoginName ID="LoginName1" runat="server" />
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+        <asp:ScriptManager ID="ScriptManager1" EnablePageMethods="true" runat="server"></asp:ScriptManager>
+
+        <Menu:MenuUbuntu runat="server" ID="MenuUbuntu" />
         
             <div class="container container-full" id="BodyContentContainer" runat="server">
+                <%--<div class="col-md-2" id="divTreeViewMenu">
 
-                <div class="col-md-2" id="divTreeViewMenu">
                     <asp:TreeView ID="TreeView1" runat="server" DataSourceID="SiteMapDataSource1" ImageSet="Arrows">
                         <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD"></HoverNodeStyle>
                         <NodeStyle HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px" Font-Names="Tahoma" Font-Size="10pt" ForeColor="Black"></NodeStyle>
@@ -69,27 +38,32 @@
                         <SelectedNodeStyle HorizontalPadding="0px" VerticalPadding="0px" Font-Underline="True" ForeColor="#5555DD"></SelectedNodeStyle>
                     </asp:TreeView>
                     <asp:SiteMapDataSource runat="server" ID="SiteMapDataSource1"></asp:SiteMapDataSource>
-                    <br />
-                    <asp:LoginView ID="LoginView1" runat="server">
-                        <RoleGroups>
-                            <asp:RoleGroup Roles="Administrator">
-                                <ContentTemplate>
-                                    <a href="Administrator/">Switch to admin page</a>
-                                </ContentTemplate>
-                            </asp:RoleGroup>
-                        </RoleGroups>
-                    </asp:LoginView>
-                    <br />
                     
+                    <br />
+                    <br />
+                    <br />
                 </div>
-                <div class="col-md-7" id="divMainContent">
+                <br />--%>
+                
+                <div class="col-md-10 col-lg-10" id="divMainContent">
                     <asp:SiteMapPath ID="SiteMapPath1" runat="server"></asp:SiteMapPath>
                     <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
                         
                     </asp:ContentPlaceHolder>
                 </div>
-                <div class="col-md-2" id="divAddsAndThemeSelector">
+                <div class="col-md-2 col-lg-2" id="divAddsAndThemeSelector">
                     <div>
+                        <br />
+                    <asp:LoginView ID="LoginView1" runat="server">
+                        <RoleGroups>
+                            <asp:RoleGroup Roles="Administrator">
+                                <ContentTemplate>
+                                    <a href="Admin">Acesso à página administrador</a>
+                                </ContentTemplate>
+                            </asp:RoleGroup>
+                        </RoleGroups>
+                    </asp:LoginView>
+                        <br />
                         <label class="control-label">Mudar o tema</label><br />
                         <asp:DropDownList ID="ThemeList" CssClass="form-control" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ThemeList_SelectedIndexChanged">
                             <asp:ListItem>Ubuntu</asp:ListItem>
@@ -97,6 +71,36 @@
                         </asp:DropDownList>
                         <br />
                         <br />
+                        <asp:Timer ID="Timer1" Interval="1000" OnTick="Timer1_Tick" runat="server"></asp:Timer>
+                        <asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" runat="server">
+                        <ContentTemplate>
+                            <br />
+                            <div>
+                                <table>
+                                    <tr>
+                                        <td colspan="2">
+                                            Início(sessão): <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        
+                                        <td>
+                                            Duração de acesso
+                                        </td>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <asp:Label ID="Label1" runat="server"></asp:Label>
+                                        </td>
+                                    </tr>
+                                </table>
+                                
+                            </div>
+                            
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
+                        </Triggers>
+                    </asp:UpdatePanel>
                         <br />
                         <Adds:WebUserControl runat="server" ID="WebUserControl" />
                     </div>
@@ -117,7 +121,6 @@
 
             <script>
                 $(document).ready(function () {
-                    //$("#page-content-wrapper").fadeIn("slow");
                     $("#animWrapper").fadeIn(1200);
                 });
             </script>

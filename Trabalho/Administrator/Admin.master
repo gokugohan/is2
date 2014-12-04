@@ -11,28 +11,104 @@
     <meta name="author" content="Hélder Menezes"/>
     <title></title>
     <link rel="shortcut icon" href="../Images/favicon.ico" />
+    <script src="../Scripts/jquery-2.1.1.js"></script>
+     <script src="../Scripts/bootstrap.min.js"></script>
+     
+     <script src="../Scripts/jquery.quicksearch.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
-       <script src="../Scripts/jquery-2.1.1.js"></script>
-     <script src="../Scripts/bootstrap.min.js"></script>
-     <script src="../Scripts/jquery.quicksearch.js"></script>
-
+     
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-        <a href="#menu-toggle"  id="menu-toggle">
-            <img class="menuIcon" src="../App_Themes/Normal/menu.png" />
-        </a>  
+       
         <div id="wrapper">
-            <!-- Sidebar -->
+
+             <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="./">Biblioteca</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-user"></i> <asp:LoginName ID="LoginName1" runat="server" /> <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="./Perfil"><i class="fa fa-fw fa-user"></i> Perfil</a>
+                        </li>
+                        
+                        <li>
+                            <div id="logout_icon_status">
+                                <i class="fa fa-fw fa-power-off"></i><asp:LoginStatus  ID="LoginStatus1" runat="server" />
+                            </div>
+                            
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    
+                    <li>
+                        <a href="./Admin">Home</a>
+                    </li>
+                    <li>
+                        <a href="./Autor">Autores</a>
+                    </li>
+                    <li>
+                        <a href="./Editora">Editoras</a>
+                    </li>
+                    <li>
+                        <a href="./Categoria">Categorias</a>
+                    </li>
+                    <li>
+                        <a href="./Livro">Livros</a>
+                    </li>
+                    <li>
+                        <a href="./Utilizadores">Utilizadores</a>
+                    </li>
+                    <li><div class="divider"></div>
+                        <a href="../">Voltar para front end</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+            <div id="page-wrapper">
+
+            <div class="container-fluid">
+                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                 </asp:ContentPlaceHolder>
+             </div>
+            <!-- /.container-fluid -->
+             
+        </div>
+        <!-- /#page-wrapper -->
+            </div> <!-- wrapper -->
+        
+
+
+            <%--<!-- Sidebar -->
             <div id="sidebar-wrapper">
                 <ul class="sidebar-nav">
                     <li class="sidebar-brand">
                         <a href="#" id="sidebrandBrand">Gerir biblioteca
                     </a>
                     </li>
-                    <asp:ContentPlaceHolder runat="server" ID="MenuMain">
-                    </asp:ContentPlaceHolder>
-
+                    <li>
+                        <a href="../Admin">Home</a>
+                    </li>
                     <li>
                         <a href="./Autor">Autor</a>
                     </li>
@@ -46,7 +122,7 @@
                         <a href="./Livro">Livro</a><!-- gerir também a categoria do livro -->
                     </li>
                     <li>
-                        <a href="./Users">Users</a>
+                        <a href="./Utilizadores">Utilizadores</a>
                     </li>
                     <li>
 
@@ -75,9 +151,33 @@
                     </li>
 
                 </ul>
-
+                <asp:Timer ID="Timer1" Interval="1000" OnTick="Timer1_Tick" runat="server"></asp:Timer>
+                        <asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" runat="server">
+                            <ContentTemplate>
+                                   <table>
+                                    <tr>
+                                        <td colspan="2">
+                                            Início do acesso: <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        
+                                        <td>
+                                            Duração de acesso
+                                        </td>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <asp:Label ID="Label1" runat="server"></asp:Label>
+                                        </td>
+                                    </tr>
+                                </table>
+                            
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
+                            </Triggers>
+                        </asp:UpdatePanel>
             </div>
-
             <!-- Page Content -->
             <div id="page-content-wrapper">
                 <div class="container-fluid">
@@ -103,7 +203,7 @@
                 });
             });
             
-        </script>
+        </script>--%>
 
     </form>
 </body>

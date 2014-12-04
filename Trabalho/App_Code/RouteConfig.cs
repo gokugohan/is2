@@ -2,7 +2,7 @@ using System;
 using System.Web;
 using System.Web.Routing;
 using Microsoft.AspNet.FriendlyUrls;
-
+using System.Web;
 namespace ASP
 {
     public static class RouteConfig
@@ -12,6 +12,9 @@ namespace ASP
             var settings = new FriendlyUrlSettings();
             settings.AutoRedirectMode = RedirectMode.Permanent;
             routes.EnableFriendlyUrls(settings);
+           
         }
+
+        
     }
 }

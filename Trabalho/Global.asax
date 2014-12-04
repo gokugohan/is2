@@ -3,9 +3,14 @@
 <%@ Import Namespace="System.Web.Routing" %>
 
 <script runat="server">
+   
+    void Application_OnStart(Object Sender, EventArgs E)
+    {
+    }
     
     void Application_Start(object sender, EventArgs e) 
     {
+        
         // Code that runs on application startup
         ScriptManager.ScriptResourceMapping.AddDefinition("jquery",
             new ScriptResourceDefinition
@@ -17,34 +22,41 @@
             });
 
         ASP.RouteConfig.RegisterRoutes(System.Web.Routing.RouteTable.Routes);
-        
+        BibliotecaRoutes(System.Web.Routing.RouteTable.Routes);
     }
 
+    public void BibliotecaRoutes(RouteCollection routes)
+    {
+        routes.MapPageRoute("Requisitar","Livro/{codigo}","~/RequisitarLivros.aspx");
+        routes.MapPageRoute("AdminDefault", "Admin","~/Administrator/Default.aspx");
+        routes.MapPageRoute("AdminAutor", "Autor", "~/Administrator/Autor.aspx");
+        routes.MapPageRoute("AdminEditora", "Editora", "~/Administrator/Editora.aspx");
+        routes.MapPageRoute("AdminCategoria", "Categoria", "~/Administrator/Categoria.aspx");
+        routes.MapPageRoute("AdminLivro", "Livro", "~/Administrator/Livro.aspx");
+        routes.MapPageRoute("AdminUsers", "Utilizadores", "~/Administrator/Users.aspx");
+        
+    }
+    
     void Application_End(object sender, EventArgs e) 
     {
-        //  Code that runs on application shutdown
-
+        //  Code that runs on application shutdown   
     }
         
     void Application_Error(object sender, EventArgs e) 
     {
-        
        
     }
 
     void Session_Start(object sender, EventArgs e) 
     {
-        // Code that runs when a new session is started
-
+        Session["session_init"] = DateTime.Now;
     }
 
+   
+    
     void Session_End(object sender, EventArgs e) 
     {
-        // Code that runs when a session ends. 
-        // Note: The Session_End event is raised only when the sessionstate mode
-        // is set to InProc in the Web.config file. If session mode is set to StateServer 
-        // or SQLServer, the event is not raised.
-
+        Session.Remove("session_init");
     }
        
 </script>

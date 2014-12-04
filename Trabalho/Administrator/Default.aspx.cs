@@ -13,7 +13,7 @@ public partial class Administrator_Default : System.Web.UI.Page
 {
 
     private string mBaseUrl;
-
+    private Util util;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -22,7 +22,7 @@ public partial class Administrator_Default : System.Web.UI.Page
 
         if (!string.IsNullOrEmpty(mBaseUrl))
         {
-            this.Master.getHiperLinkControl.NavigateUrl = mBaseUrl;
+            //this.Master.getHiperLinkControl.NavigateUrl = mBaseUrl;
         }
 
         using (var entidade = new BibliotecaEntity())
@@ -33,6 +33,8 @@ public partial class Administrator_Default : System.Web.UI.Page
 
             GridView1.DataBind();
         }
+
+        this.util = new Util(Response, Server);
     }
 
 
@@ -50,76 +52,19 @@ public partial class Administrator_Default : System.Web.UI.Page
         switch (qualTabela)
         {
             case "autor":
-                using (var entidade = new BibliotecaEntity())
-                {
-                    var autores = from autor in entidade.Autores
-                                  select autor;
-
-                    csv += "Código" + "," + "Nome," + "Apelido" + "\r\n";
-
-                    foreach (var autor in autores)
-                    {
-                        csv += autor.ID_Autor + "," + autor.Nome + "," + autor.Apelido + "\r\n";
-                    }
-
-                    CriarFicheiroCSV(csv, "Autor");
-                }
-
+                util.CriarCSVAutor();
                 break;
             case "livro":
-                using (var entidade = new BibliotecaEntity())
-                {
-                    var livros = from l in entidade.View_Livro
-                                 select l;
-                    csv += "Código,ISBN,Título,Data publicação,Categoria,Editora,Autor\r\n";
-                    foreach (var livro in livros)
-                    {
-                        csv += livro.Código + "," + livro.ISBN + "," + livro.Titulo + "," + livro.Data_publicação + ","
-                            + livro.Nome_Categoria + "," + livro.Editora + "," + livro.Autor + "\r\n";
-                    }
-                    CriarFicheiroCSV(csv, "Livro");
-                }
+                util.CriarCSVLivro();
                 break;
             case "editora":
-                using (var entidade = new BibliotecaEntity())
-                {
-                    var editoras = from e in entidade.Editoras
-                                   select e;
-                    csv = "Código,Nome,Descrição\r\n";
-                    foreach (var editora in editoras)
-                    {
-                        csv += editora.ID_Editora + "," + editora.Nome + "," + editora.Descricao + "\r\n";
-                    }
-                    CriarFicheiroCSV(csv, "Editora");
-                }
+                util.CriarCSVEditora();
                 break;
             case "categoria":
-                using (var entidade = new BibliotecaEntity())
-                {
-                    var categorias = from c in entidade.Categorias
-                                     select c;
-                    csv = "Código,categoria\r\n";
-                    foreach (var categoria in categorias)
-                    {
-                        csv += categoria.ID_Categoria + "," + categoria.Nome_Categoria + "\r\n";
-                    }
-                    CriarFicheiroCSV(csv, "Categoria");
-                }
+                this.util.CriarCSVCategorias();
                 break;
             case "utilizador":
-                using (var entidade = new BibliotecaEntity())
-                {
-                    var utilizadores = from u in entidade.Utilizadores
-                                       select u;
-
-                    csv = "Código,Nome,Apelido,Número contato, E-mail,Endereço\r\n";
-                    foreach (var utilizador in utilizadores)
-                    {
-                        csv += utilizador.ID_Utilizador + "," + utilizador.Nome + "," + utilizador.Apelido + ","
-                            + utilizador.NumeroContato + "," + utilizador.Email + "," + utilizador.EnderecoMorada + "\r\n";
-                    }
-                    CriarFicheiroCSV(csv, "Utilizador");
-                }
+                util.CriarCSVUtilizador();
                 break;
         }
     }
@@ -146,24 +91,6 @@ public partial class Administrator_Default : System.Web.UI.Page
         }
     }
 
-    /// <summary>
-    /// Gerar o ficheiro CSV 
-    /// </summary>
-    /// <param name="conteudo">O conteudo do ficheiro CSV</param>
-    /// <param name="nomeDoFicheiro">O nome do ficheiro</param>
-    /// <param name="page"></param>
-    protected void CriarFicheiroCSV(string conteudo, string nomeDoficheiro)
-    {
-        Response.Clear();
-        Response.Buffer = true;
-        Response.Charset = "";
-        Response.ContentType = "text/csv; charset-UTF-8";
-        Response.AddHeader("content-disposition", "attachment;filename=" + nomeDoficheiro + ".csv");
-        Response.Output.Write(conteudo);
-        Response.Flush();
-        Response.End();
-    }
-
     protected string getFormat(object data)
     {
         string tmp = data.ToString();
@@ -180,34 +107,13 @@ public partial class Administrator_Default : System.Web.UI.Page
 
         }
         char[] delimitador = { '/' };
-        string[] ttt = m.Split(delimitador);
-        return ttt[0] + "-" + ttt[1] + "-" + ttt[2];
+        string[] resultado = m.Split(delimitador);
+        return resultado[0] + "-" + resultado[1] + "-" + resultado[2];
     }
-
 
     protected void btnGenerateXML_Click(object sender, EventArgs e)
     {
 
-        gerarXML();
-    }
-
-    private void gerarXML()
-    {
-        int contador = 1;
-        XDeclaration xDeclaration = new XDeclaration("1.0", "utf-8", "yes");
-        XDocument xmlDocument = new XDocument(xDeclaration,
-            new XComment("Dados do utilizadores que requisitaram o livro"),
-            new XElement("requisições",
-                
-                from l in Util.getLivrosEmprestadosPelosUtilizadores()
-                select new XElement("requisão",new XAttribute("contador",contador++),
-                    new XElement("Utilizador", new XAttribute("IDLogin", l.IDLogin), l.Nome),
-                    new XElement("TituloLivro", l.Titulo),
-                    new XElement("AutorDoLivro", l.Autor),
-                    new XElement("Editoradolivro", l.Editora),
-                    new XElement("DataEmpretimo", l.dataEmprestimo.ToShortDateString()),
-                    new XElement("DataDevolucao", l.dateDevolucao.ToShortDateString()))
-                ));
-        xmlDocument.Save(@Server.MapPath("~/Administrator/empr.xml"));
+        util.criarXMLLivrosEmprestados(downloadLink);
     }
 }

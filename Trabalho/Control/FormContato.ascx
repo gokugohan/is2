@@ -1,7 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="FormContato.ascx.cs" Inherits="Control_FormContato" %>
 <div id="animWrapper">
-        <div class="jumbotron">
-            <table class="table table-responsive">
+            <table class="table">
                 <thead>
                     <tr>
                         <td colspan="3">
@@ -65,5 +64,4 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
     </div>

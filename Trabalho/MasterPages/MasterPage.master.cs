@@ -10,12 +10,21 @@ public partial class MasterPages_Publico : System.Web.UI.MasterPage
     
     protected void Page_Load(object sender, EventArgs e)
     {
-       
+
         if (!IsPostBack)
         {
+            if (Session["session_init"] != null)
+            {
+                Label2.Text = ((DateTime)Session["session_init"]).ToLongTimeString();
+            }
+            if (Cache.Get("duracao") == null)
+            {
+                Cache.Insert("duracao", DateTime.Now);
+            }
+
             string selectedTheme = Page.Theme;
             HttpCookie PreferredTheme = Request.Cookies.Get("PreferredTheme");
-            
+
             if (PreferredTheme != null)
             {
                 selectedTheme = PreferredTheme.Value;
@@ -30,6 +39,8 @@ public partial class MasterPages_Publico : System.Web.UI.MasterPage
                 }
             }
         }
+
+        
     }
 
 
@@ -41,5 +52,24 @@ public partial class MasterPages_Publico : System.Web.UI.MasterPage
         Response.Cookies.Add(PreferredTheme);
         Response.Redirect(Request.Url.ToString());
         
+    }
+
+    protected void Timer1_Tick(object sender, EventArgs e)
+    {
+        
+        if (Cache.Get("duracao") != null)
+        {
+            DateTime init = (DateTime)Cache.Get("duracao");
+            DateTime atual = DateTime.Now;
+
+            TimeSpan mTimeSpan = atual - init;
+            int horas = mTimeSpan.Hours;
+            int minuto = mTimeSpan.Minutes;
+            int segundo = mTimeSpan.Seconds;
+            string difTempo = horas.ToString("00") + "h:" +
+                minuto.ToString("00") + "m:" + segundo.ToString("00")+"s";
+
+            Label1.Text = difTempo;
+        }
     }
 }

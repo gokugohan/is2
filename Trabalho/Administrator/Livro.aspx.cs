@@ -15,6 +15,7 @@ public partial class Administrator_Livro_Default : System.Web.UI.Page
                                  "Junho","Julho","Agosto",
                                  "Setembro","Outubro",
                                  "Novembro","Dezembro"};
+    private IQueryable<View_Livro> livros;
 
     
 
@@ -24,7 +25,7 @@ public partial class Administrator_Livro_Default : System.Web.UI.Page
 
         if (!string.IsNullOrEmpty(mBaseUrl))
         {
-            this.Master.getHiperLinkControl.NavigateUrl = mBaseUrl;
+            //this.Master.getHiperLinkControl.NavigateUrl = mBaseUrl;
         }
 
     }
@@ -52,7 +53,6 @@ public partial class Administrator_Livro_Default : System.Web.UI.Page
 
         m += "<br/>" + ttt[0] + "-"+ttt[1]+"-"+ttt[2];
 
-        Label8.Text = m;
         return ttt[0] + "-" + ttt[1] + "-" + ttt[2];
     }
 
@@ -126,5 +126,41 @@ public partial class Administrator_Livro_Default : System.Web.UI.Page
     protected void DetailsView1_ItemInserted(object sender, DetailsViewInsertedEventArgs e)
     {
         Response.Redirect("./Livro");
+    }
+
+    protected void OnDataBound(object sender, EventArgs e)
+    {
+
+        GridViewRow row = new GridViewRow(0, 0, DataControlRowType.Footer, DataControlRowState.Normal);
+
+        for (int i = 0; i < GridView2.Columns.Count; i++)
+        {
+            TableHeaderCell cell = new TableHeaderCell();
+            if (i != 0)
+            {
+                TextBox txtSearch = new TextBox();
+                txtSearch.Attributes["placeholder"] = "por " + GridView2.Columns[i].HeaderText;
+                txtSearch.CssClass = "search_textbox form-control";
+                cell.Controls.Add(txtSearch);
+                row.Controls.Add(cell);
+            }
+            else
+            {
+                Label lbl = new Label();
+                lbl.Text = "Pesquisar livro";
+                lbl.CssClass = "control-label pull-left";
+                cell.Controls.Add(lbl);
+                row.Controls.Add(cell);
+            }
+
+        }
+
+
+        if (GridView2.HeaderRow != null)
+        {
+            GridView2.HeaderRow.Parent.Controls.AddAt(0, row);
+
+        }
+
     }
 }

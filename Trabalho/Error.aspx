@@ -2,6 +2,6 @@
 
 <asp:Content ContentPlaceHolderID="MainContentPlaceHolder" runat="server">
     <h1 style="color:red;">
-        Lol. Error page!
+        <em>Erro</em>
     </h1>
 </asp:Content>

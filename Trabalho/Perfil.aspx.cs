@@ -8,105 +8,94 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 public partial class MyProfiel : BasePage
-{    
+{
     private Panel mPanelFormulario;
-    private MultiView mMultiView;
     private TextBox tbNome, tbApelido, tbNumeroContato;
     private TextBox tbRua, tbCodigoPostal, tbCidade, tbPais;
     private MembershipUser user;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
-         user = Membership.GetUser();
+        user = Membership.GetUser();
+        this.mPanelFormulario = (Panel)_(this.LoginView1, "PanelFormPerfil");
+        
+        
         if (user != null & User.Identity.IsAuthenticated)
         {
             if (User.Identity.Name == user.UserName)
             {
                 ProfileCommon profile = Profile.GetProfile(User.Identity.Name);
-         
+
                 if (isLoggedInUserPerfilIsEnough(profile))
                 {
-                    lblUserName.Text = user.UserName;
-                    lblNomeCompleto.Text = profile.Nome +" " + profile.Apelido;
-                    lblNumContato.Text = profile.NumeroContato;
-                    lblEmail.Text = user.Email;
-                    lblRua.Text = profile.Endereco.Rua;
-                    lblCodigoPostal.Text = profile.Endereco.CodigoPostal;
-                    lblCidade.Text = profile.Endereco.Cidade;
-                    lblPais.Text = profile.Endereco.Pais;
+                    PanelDadosPerfil.Visible = true;
+                    showInfo(profile);//show profile info data and hide the form
+                    this.mPanelFormulario.Visible = false;
                 }
                 else
                 {
-                    showProfileForm();
-                    return;
+                    mPanelFormulario.Visible = true;
+                    showProfileForm();//show form and hide the(empty) table
+                    PanelDadosPerfil.Visible = false;
                 }
-                
 
             }
-        }
-        else if (user == null & User.Identity.IsAuthenticated)
-        {
-            showProfileForm();
         }
         else
         {
             Label2.Text = "O utilizador não é autenticado!";
-            
         }
 
-        
+
+    }
+
+    private void showInfo(ProfileCommon profile)
+    {
+        lblUserName.Text = user.UserName;
+        lblNomeCompleto.Text = profile.Nome + " " + profile.Apelido;
+        lblNumContato.Text = profile.NumeroContato;
+        lblEmail.Text = user.Email;
+        lblRua.Text = profile.Endereco.Rua;
+        lblCodigoPostal.Text = profile.Endereco.CodigoPostal;
+        lblCidade.Text = profile.Endereco.Cidade;
+        lblPais.Text = profile.Endereco.Pais;
     }
 
     private void showProfileForm()
     {
-        this.mPanelFormulario = (Panel)_(this.LoginView1, "PanelFormPerfil");
-
-        this.mMultiView = (MultiView)_(this.mPanelFormulario, "MultiView1");
-
-        this.mMultiView.ActiveViewIndex = 0;
-
-        getAllControlFromMultiView();
+        getAllControlInsideWizard();
     }
 
     public bool isLoggedInUserPerfilIsEnough(ProfileCommon profile)
     {
-        bool retorno = profile.Nome != string.Empty && profile.Apelido != string.Empty 
+        bool retorno = profile.Nome != string.Empty && profile.Apelido != string.Empty
             && profile.NumeroContato != string.Empty;
         return retorno;
     }
 
-    private void getAllControlFromMultiView()
+    private void getAllControlInsideWizard()
     {
-        if (this.mMultiView != null)
-        {
-            this.tbNome = (TextBox)_(this.mMultiView, "tbNome");
-            this.tbApelido = (TextBox)_(this.mMultiView, "tbApelido");
-            this.tbNumeroContato = (TextBox)_(this.mMultiView, "tbNumeroContato");
-            //this.tbEmail = (TextBox)_(this.mMultiView, "tbEmail");
-            this.tbRua = (TextBox)_(this.mMultiView, "tbRua");
-            this.tbCodigoPostal = (TextBox)_(this.mMultiView, "tbCodigoPostal");
-            this.tbCidade = (TextBox)_(this.mMultiView, "tbCidade");
-            this.tbPais = (TextBox)_(this.mMultiView, "tbPais");
+        Wizard wizard = _(this.mPanelFormulario, "Wizard1") as Wizard;
+        WizardStep step1 = _(wizard,"WizardStep1") as WizardStep;
+        WizardStep step2 = _(wizard,"WizardStep2") as WizardStep;
 
+        this.tbNome = _(step1, "tbNome") as TextBox;
+        this.tbApelido = _(step1, "tbApelido") as TextBox;
+        this.tbNumeroContato = _(step1, "tbNumeroContato") as TextBox;
+        //this.tbEmail = (TextBox)_(this.mMultiView, "tbEmail");
+        this.tbRua = _(step2, "tbRua") as TextBox;
+        this.tbCodigoPostal = _(step2, "tbCodigoPostal") as TextBox;
+        this.tbCidade = _(step2, "tbCidade") as TextBox;
+        this.tbPais = _(step2, "tbPais") as TextBox;
 
-        }
+        Label2.Text = step1.Title + "<br/>" + step2.Title;
     }
 
-    private Control _(Control control,string id)
+    private Control _(Control control, string id)
     {
         return control.FindControl(id);
     }
 
-
-    protected void proximo(object sender, EventArgs e)
-    {
-        this.mMultiView.ActiveViewIndex = 1;
-    }
-
-    protected void anterior(object sender, EventArgs e)
-    {
-        this.mMultiView.ActiveViewIndex = 0;
-    }
 
     protected void fim(object sender, EventArgs e)
     {
@@ -119,16 +108,18 @@ public partial class MyProfiel : BasePage
         Profile.Endereco.Cidade = get(tbCidade);
         Profile.Endereco.Pais = get(tbPais);
 
-        using(var entidade = new BibliotecaEntity()){
-            Table_Utilizador u = new Table_Utilizador{
+        using (var entidade = new BibliotecaEntity())
+        {
+            Table_Utilizador u = new Table_Utilizador
+            {
                 Nome = get(tbNome),
                 Apelido = get(tbApelido),
                 NumeroContato = get(tbNumeroContato),
                 Email = user.Email,
-                EnderecoMorada = "Rua: " + get(tbRua)+ " Código Postal: " + get(tbCodigoPostal)+" Cidade: " + get(tbCidade)+
+                EnderecoMorada = "Rua: " + get(tbRua) + " Código Postal: " + get(tbCodigoPostal) + " Cidade: " + get(tbCidade) +
                 " País: " + get(tbPais),
                 NomeUtilizador = user.UserName
-                
+
             };
 
             entidade.Utilizadores.Add(u);
@@ -145,5 +136,47 @@ public partial class MyProfiel : BasePage
     private string get(TextBox tb)
     {
         return tb.Text.ToString().Trim();
+    }
+
+    protected void Wizard1_NextButtonClick(object sender, WizardNavigationEventArgs e)
+    {
+        Label2.Text += "Next button was clicked";
+    }
+    protected void Wizard1_FinishButtonClick(object sender, WizardNavigationEventArgs e)
+    {
+        
+        Label2.Visible = true;
+        Label2.Text = "The Wizard has been completed";
+        Profile.Nome = get(tbNome);
+        Profile.Apelido = get(tbApelido);
+        Profile.NumeroContato = get(tbNumeroContato);
+        Profile.Email = user.Email;
+        Profile.Endereco.Rua = get(tbRua);
+        Profile.Endereco.CodigoPostal = get(tbCodigoPostal);
+        Profile.Endereco.Cidade = get(tbCidade);
+        Profile.Endereco.Pais = get(tbPais);
+
+        using (var entidade = new BibliotecaEntity())
+        {
+            Table_Utilizador u = new Table_Utilizador
+            {
+                Nome = get(tbNome),
+                Apelido = get(tbApelido),
+                NumeroContato = get(tbNumeroContato),
+                Email = user.Email,
+                EnderecoMorada = "Rua: " + get(tbRua) + " Código Postal: " + get(tbCodigoPostal) + " Cidade: " + get(tbCidade) +
+                " País: " + get(tbPais),
+                NomeUtilizador = user.UserName
+
+            };
+
+            entidade.Utilizadores.Add(u);
+            entidade.SaveChanges();
+        }
+
+        Profile.Save();
+
+        Response.Redirect("Perfil.aspx");
+        this.mPanelFormulario.Visible = false;
     }
 }

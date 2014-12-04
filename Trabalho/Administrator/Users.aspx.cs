@@ -20,7 +20,6 @@ public partial class Users : System.Web.UI.Page
             ddlUser.DataSource = Membership.GetAllUsers();
             ddlUser.DataBind();
             Label1.Text = "Selecionar um utilizador no menu dropdown <b>Users</b> para adicionar ao role selecionado no menu dropdown <b>Roles</b>";
-
             bindUserToLBUserInRoles();
         }
 
